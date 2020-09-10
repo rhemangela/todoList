@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  todoList
-//
-//  Created by Angela on 26/7/2020.
-//  Copyright © 2020 AT Production. All rights reserved.
-//
-
 import UIKit
 import CoreData
 import RealmSwift
@@ -16,41 +8,41 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         ////////
     }
     @IBOutlet weak var tableView: UITableView!
-    //    let defaults = UserDefaults.standard;
+//    let defaults = UserDefaults.standard;
 //    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext;
-    var testing = ["1","2","3","4"];
+//    var testing = ["1","2","3","4"];
+    let realm = try! Realm();
     var itemArray = [Item_]();
     var listArray = [todoList]();
     var items : Results<Item_>!;
-    let realm = try! Realm();
-    
-    @IBAction func whenEditEnd(_ sender: Any) {
-    }
+
     override func viewDidLoad() {
         super.viewDidLoad();
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         items = realm.objects(Item_.self);
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask));
         loadCoreData();
         self.tableView.reloadData();
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector (tableViewTapped));
+        self.tableView.addGestureRecognizer(tapGesture);
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask));
 //       if let temp = defaults.array(forKey: "tempArray") as? [arrayItem] {tempArray = temp;}
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        if (indexPath.row == self.testing.count){
+        if (indexPath.row == self.items.count){
             let cell = tableView.dequeueReusableCell(withIdentifier: "addNewItemCell", for: indexPath) as! AddNewItemTableViewCell;
 //            cell._todoLabel?.text = "+ add new items...";
             return cell;
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TodoListTableViewCell;
-            cell._todoLabel?.text = self.testing[indexPath.row];
+            cell._todoLabel?.text = self.items[indexPath.row].issue;
             return cell;
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.testing.count+1;
+        self.items.count+1;
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -59,6 +51,11 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     
     //when tapping cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath.row != self.items.count){
+            let cell = tableView.cellForRow(at: indexPath) as! TodoListTableViewCell;
+            cell._tickBox.image = UIImage(named: "check-square-regular.png");
+            self.tableView.reloadData();
+        }
 //        print(itemArray[indexPath.row]);
 //        itemArray[indexPath.row].isDone = !itemArray[indexPath.row].isDone;
 //        tableView.deselectRow(at: indexPath, animated: true);
@@ -67,18 +64,18 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         print(indexPath.row);
-        if (indexPath.row == self.testing.count){
+        
+        if (indexPath.row == self.items.count){
             let cell = tableView.cellForRow(at: indexPath) as! AddNewItemTableViewCell;
-            let newItem = Item_();
-            cell.configure(text:"testing", placeholder:"加入新項目...")
-            newItem.issue = "hi";
-        }
+            if !(cell.newItemTextField.text?.isEmpty)!
+            {
+                self.saveItem(newItemText: cell.newItemTextField.text!);
+            }
+            cell.configure(placeholder:"+ add new item....");
+            cell.newItemTextField.isEnabled = false;
     }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
     }
-    
+
     //swipe to delete cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -108,25 +105,39 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     present(alert,animated: true, completion: nil);
       }
     
-//    @IBAction func addNewItem(_ sender: UIBarButtonItem) {
-//    var inputField = UITextField();
-//    let alert = UIAlertController(title: "hello world!", message: "let say something...", preferredStyle: UIAlertController.Style.alert);
-//    let action = UIAlertAction(title: "hit", style: UIAlertAction.Style.default) { (UIAlertAction) in
-//                let newItem = Item(context: self.context);
-//                newItem.issue = inputField.text!;
-//                self.tempArray.append(newItem);
-//                self.saveData();
-//                print(self.tempArray);
-        //        self.defaults.set(self.tempArray, forKey: "tempArray");
-//        alert.addAction(action);
-//        alert.addTextField { (UITextField) in
-//                UITextField.placeholder = "eg. angela";
-//                inputField = UITextField;
-//            }
-//        present(alert,animated: true, completion: nil);
-//          }
-//            };
-
+    @objc func tableViewTapped(tap:UITapGestureRecognizer) {
+        let location = tap.location(in: self.tableView)
+        let path = self.tableView.indexPathForRow(at: location);// if empty cell, path = nil
+        
+        if let indexPathForRow = path {// clicking valid cells
+            switch indexPathForRow.row {
+                case items.count: // clicking text field
+                    let cell = self.tableView.cellForRow(at: indexPathForRow) as! AddNewItemTableViewCell;
+                    cell.newItemTextField.isEnabled = true;
+                default: //other valid cells
+                    let indexPath = IndexPath(row: items.count, section: 0)
+                    let cell = self.tableView.cellForRow(at: indexPath) as! AddNewItemTableViewCell;
+                    if !(cell.newItemTextField.text?.isEmpty)!
+                    {
+                        self.saveItem(newItemText: cell.newItemTextField.text!);
+                    }
+                    cell.configure(placeholder:"+ add new item....");
+                    cell.newItemTextField.isEnabled = false;
+                    cell.newItemTextField.endEditing(true);
+                }
+                }
+        else{
+            let indexPath = IndexPath(row: items.count, section: 0)
+            let cell = self.tableView.cellForRow(at: indexPath) as! AddNewItemTableViewCell;
+            if !(cell.newItemTextField.text?.isEmpty)!
+            {
+                self.saveItem(newItemText: cell.newItemTextField.text!);
+            }
+            cell.configure(placeholder:"+ add new item....");
+            cell.newItemTextField.isEnabled = false;
+            cell.newItemTextField.endEditing(true);
+        }
+    }
     
     func loadCoreData(){
 //        let request : NSFetchRequest<Item> = Item.fetchRequest();
@@ -134,7 +145,9 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
 //        catch { print(".....\(error)")}
     }
     
-    func saveItem(newItem:Item_){
+    func saveItem(newItemText:String){
+        let newItem = Item_();
+        newItem.issue = newItemText;
         do { try realm.write{
             realm.add(newItem)
             }}

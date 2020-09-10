@@ -11,10 +11,9 @@ class AddNewItemTableViewCell: UITableViewCell, UITextFieldDelegate {
         super.setSelected(selected, animated: animated)
     }
     
-    public func configure(text: String?, placeholder: String) {
-        newItemTextField.text = text
+    public func configure(placeholder: String) {
+        newItemTextField.text = "";
         newItemTextField.placeholder = placeholder
-        newItemTextField.accessibilityValue = text
         newItemTextField.accessibilityLabel = placeholder
         }
 }
