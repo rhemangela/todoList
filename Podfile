@@ -4,4 +4,5 @@ target 'todoList' do
 use_frameworks!
   # Pods for todoList
 pod 'RealmSwift'
+pod 'IQKeyboardManagerSwift'
 end

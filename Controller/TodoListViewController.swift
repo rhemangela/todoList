@@ -1,16 +1,14 @@
 import UIKit
 import CoreData
 import RealmSwift
+import IQKeyboardManagerSwift
 
 class TodoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
-    @IBAction func onEditEnd(_ sender: UITextField) {
-        ////////
-    }
+    @IBOutlet var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
-//    let defaults = UserDefaults.standard;
+    //    let defaults = UserDefaults.standard;
 //    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext;
-//    var testing = ["1","2","3","4"];
     let realm = try! Realm();
     var itemArray = [Item_]();
     var listArray = [todoList]();
@@ -23,8 +21,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         items = realm.objects(Item_.self);
         loadCoreData();
         self.tableView.reloadData();
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector (tableViewTapped));
-        self.tableView.addGestureRecognizer(tapGesture);
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask));
 //       if let temp = defaults.array(forKey: "tempArray") as? [arrayItem] {tempArray = temp;}
     }
@@ -51,10 +47,14 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     
     //when tapping cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("select");
         if (indexPath.row != self.items.count){
             let cell = tableView.cellForRow(at: indexPath) as! TodoListTableViewCell;
             cell._tickBox.image = UIImage(named: "check-square-regular.png");
             self.tableView.reloadData();
+        } else if (indexPath.row == self.items.count){
+            let cell = self.tableView.cellForRow(at: indexPath) as! AddNewItemTableViewCell;
+            cell.newItemTextField.isEnabled = true;
         }
 //        print(itemArray[indexPath.row]);
 //        itemArray[indexPath.row].isDone = !itemArray[indexPath.row].isDone;
@@ -63,7 +63,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        print(indexPath.row);
+        print("deselect,\(indexPath.row)");
         
         if (indexPath.row == self.items.count){
             let cell = tableView.cellForRow(at: indexPath) as! AddNewItemTableViewCell;
@@ -104,40 +104,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     present(alert,animated: true, completion: nil);
       }
-    
-    @objc func tableViewTapped(tap:UITapGestureRecognizer) {
-        let location = tap.location(in: self.tableView)
-        let path = self.tableView.indexPathForRow(at: location);// if empty cell, path = nil
-        
-        if let indexPathForRow = path {// clicking valid cells
-            switch indexPathForRow.row {
-                case items.count: // clicking text field
-                    let cell = self.tableView.cellForRow(at: indexPathForRow) as! AddNewItemTableViewCell;
-                    cell.newItemTextField.isEnabled = true;
-                default: //other valid cells
-                    let indexPath = IndexPath(row: items.count, section: 0)
-                    let cell = self.tableView.cellForRow(at: indexPath) as! AddNewItemTableViewCell;
-                    if !(cell.newItemTextField.text?.isEmpty)!
-                    {
-                        self.saveItem(newItemText: cell.newItemTextField.text!);
-                    }
-                    cell.configure(placeholder:"+ add new item....");
-                    cell.newItemTextField.isEnabled = false;
-                    cell.newItemTextField.endEditing(true);
-                }
-                }
-        else{
-            let indexPath = IndexPath(row: items.count, section: 0)
-            let cell = self.tableView.cellForRow(at: indexPath) as! AddNewItemTableViewCell;
-            if !(cell.newItemTextField.text?.isEmpty)!
-            {
-                self.saveItem(newItemText: cell.newItemTextField.text!);
-            }
-            cell.configure(placeholder:"+ add new item....");
-            cell.newItemTextField.isEnabled = false;
-            cell.newItemTextField.endEditing(true);
-        }
-    }
     
     func loadCoreData(){
 //        let request : NSFetchRequest<Item> = Item.fetchRequest();

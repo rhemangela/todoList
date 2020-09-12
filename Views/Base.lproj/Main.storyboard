@@ -88,7 +88,7 @@
                                 <rect key="frame" x="3" y="90" width="408" height="674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" id="OsC-zc-ID1" customClass="TodoListTableViewCell" customModule="todoList" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="customCell" id="OsC-zc-ID1" customClass="TodoListTableViewCell" customModule="todoList" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="408" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OsC-zc-ID1" id="Ptw-Tr-l3F">
@@ -126,15 +126,12 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="onEditEnd:" destination="LpS-Yy-QHC" eventType="editingDidEnd" id="ztG-XJ-Zbo"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="newItemTextField" destination="2dJ-4c-0Dk" id="zxk-xC-VXQ"/>
+                                            <outlet property="newItemTextField" destination="2dJ-4c-0Dk" id="HdS-bk-qbe"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -142,9 +139,9 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="zAe-zx-Fm4" firstAttribute="trailing" secondItem="Rsk-sT-ZBn" secondAttribute="trailing" constant="3" id="0Za-tz-4hX"/>
                             <constraint firstItem="Rsk-sT-ZBn" firstAttribute="leading" secondItem="zAe-zx-Fm4" secondAttribute="leading" constant="3" id="0s0-rn-3K2"/>
                             <constraint firstItem="Rsk-sT-ZBn" firstAttribute="top" secondItem="NNy-nR-MmY" secondAttribute="top" constant="90" id="9u8-O3-H8P"/>
+                            <constraint firstItem="zAe-zx-Fm4" firstAttribute="trailing" secondItem="Rsk-sT-ZBn" secondAttribute="trailing" constant="3" id="KGD-eA-yZn"/>
                             <constraint firstItem="zAe-zx-Fm4" firstAttribute="bottom" secondItem="Rsk-sT-ZBn" secondAttribute="bottom" id="haH-wU-P4j"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zAe-zx-Fm4"/>
@@ -163,6 +160,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="heightConstraint" destination="haH-wU-P4j" id="xpP-xz-2eK"/>
                         <outlet property="tableView" destination="Rsk-sT-ZBn" id="spw-hw-SUu"/>
                     </connections>
                 </viewController>
