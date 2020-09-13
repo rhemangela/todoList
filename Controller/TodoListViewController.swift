@@ -13,7 +13,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     var itemArray = [Item_]();
     var listArray = [todoList]();
     var items : Results<Item_>!;
-
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         self.tableView.delegate = self;
@@ -33,6 +33,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TodoListTableViewCell;
             cell._todoLabel?.text = self.items[indexPath.row].issue;
+            cell._tickBox.image = items[indexPath.row].isDone ? UIImage(named: "check-square-regular.png") : UIImage(named: "square-regular.png");
             return cell;
         }
     }
@@ -50,16 +51,17 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         print("select");
         if (indexPath.row != self.items.count){
             let cell = tableView.cellForRow(at: indexPath) as! TodoListTableViewCell;
-            cell._tickBox.image = UIImage(named: "check-square-regular.png");
+            do { try realm.write {
+                items[indexPath.row].isDone = !items[indexPath.row].isDone;
+                }
+            }
+            catch {print(error)}
+            cell._tickBox.image = items[indexPath.row].isDone ? UIImage(named: "check-square-regular.png") : UIImage(named: "square-regular.png");
             self.tableView.reloadData();
         } else if (indexPath.row == self.items.count){
             let cell = self.tableView.cellForRow(at: indexPath) as! AddNewItemTableViewCell;
             cell.newItemTextField.isEnabled = true;
         }
-//        print(itemArray[indexPath.row]);
-//        itemArray[indexPath.row].isDone = !itemArray[indexPath.row].isDone;
-//        tableView.deselectRow(at: indexPath, animated: true);
-//        tableView.reloadData();
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -77,13 +79,40 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     //swipe to delete cell
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            itemArray.remove(at: indexPath.row);
-            tableView.deleteRows(at: [indexPath], with: .none)
-        } else if editingStyle == .insert {
-
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            itemArray.remove(at: indexPath.row);
+//            tableView.deleteRows(at: [indexPath], with: .none)
+//        }
+//    }
+    
+    //todo trailing action
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+     
+        let taken = UIContextualAction(style: .normal, title: "Delete") { (action, view, completion) in
+            print("delete", action);
+            do { try self.realm.write {
+                self.realm.delete(self.items[indexPath.row])
+                }}
+            catch { print(error)};
+            self.itemArray.remove(at: indexPath.row);
+            self.tableView.deleteRows(at: [indexPath], with: .none);
+            self.tableView.reloadData();
+            completion(true)
         }
+        taken.backgroundColor =  UIColor(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
+     
+        let added = UIContextualAction(style: .normal, title: "Added") { (action, view, completion) in
+            print("Just Swiped Added", action)
+            completion(false)
+        }
+        added.image = UIImage(named: "Small Image")
+        added.backgroundColor =  UIColor(red: 0.2436070212, green: 0.5393256153, blue: 0.1766586084, alpha: 1)
+     
+        let config = UISwipeActionsConfiguration(actions: [taken, added])
+        config.performsFirstActionWithFullSwipe = false
+     
+        return config
     }
     
     @IBAction func addNewFolder(_ sender: UIBarButtonItem) {

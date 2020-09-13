@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+//        UINavigationBar.appearance().backgroundColor = UIColor(red: 245, green: 0, blue: 87, alpha: 100) ;
+        UINavigationBar.appearance().backgroundColor = UIColor.blue;
         IQKeyboardManager.shared.enable = true
         print(Realm.Configuration.defaultConfiguration.fileURL);
         return true
