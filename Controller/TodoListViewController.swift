@@ -10,9 +10,9 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     //    let defaults = UserDefaults.standard;
 //    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext;
     let realm = try! Realm();
-    var itemArray = [Item_]();
     var listArray = [todoList]();
     var items : Results<Item_>!;
+    var _currentPath :IndexPath = [0,0];
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -21,6 +21,8 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         items = realm.objects(Item_.self);
         loadCoreData();
         self.tableView.reloadData();
+        self.tableView.tableFooterView = UIView();
+        self._currentPath = [0, self.items.count];
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask));
 //       if let temp = defaults.array(forKey: "tempArray") as? [arrayItem] {tempArray = temp;}
     }
@@ -28,12 +30,14 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         if (indexPath.row == self.items.count){
             let cell = tableView.dequeueReusableCell(withIdentifier: "addNewItemCell", for: indexPath) as! AddNewItemTableViewCell;
+            cell.newItemTickBox.isHidden = true;
 //            cell._todoLabel?.text = "+ add new items...";
             return cell;
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TodoListTableViewCell;
             cell._todoLabel?.text = self.items[indexPath.row].issue;
-            cell._tickBox.image = items[indexPath.row].isDone ? UIImage(named: "check-square-regular.png") : UIImage(named: "square-regular.png");
+            cell._tickBox.image = items[indexPath.row].isDone ? UIImage(named: "check-square-gray.png") : UIImage(named: "square-regular.png");
+            cell._todoLabel.textColor =  items[indexPath.row].isDone ? UIColor(red: 0.672, green: 0.675, blue: 0.706, alpha: 1.0) : UIColor.black;
             return cell;
         }
     }
@@ -60,7 +64,9 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             self.tableView.reloadData();
         } else if (indexPath.row == self.items.count){
             let cell = self.tableView.cellForRow(at: indexPath) as! AddNewItemTableViewCell;
+            cell.newItemTickBox.isHidden = false;
             cell.newItemTextField.isEnabled = true;
+            cell.newItemTextField.becomeFirstResponder()
         }
     }
     
@@ -72,6 +78,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             if !(cell.newItemTextField.text?.isEmpty)!
             {
                 self.saveItem(newItemText: cell.newItemTextField.text!);
+                cell.newItemTickBox.isHidden = true;
             }
             cell.configure(placeholder:"+ add new item....");
             cell.newItemTextField.isEnabled = false;
@@ -89,31 +96,50 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     //todo trailing action
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
      
-        let taken = UIContextualAction(style: .normal, title: "Delete") { (action, view, completion) in
-            print("delete", action);
+        let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completion) in
             do { try self.realm.write {
                 self.realm.delete(self.items[indexPath.row])
                 }}
             catch { print(error)};
-            self.itemArray.remove(at: indexPath.row);
             self.tableView.deleteRows(at: [indexPath], with: .none);
             self.tableView.reloadData();
             completion(true)
         }
-        taken.backgroundColor =  UIColor(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
+        delete.backgroundColor =  UIColor(red: 0.991, green: 0.184, blue: 0.462, alpha: 1.0)
      
-        let added = UIContextualAction(style: .normal, title: "Added") { (action, view, completion) in
-            print("Just Swiped Added", action)
+        let edit = UIContextualAction(style: .normal, title: "Added") { (action, view, completion) in
+        let cell = self.tableView.cellForRow(at: indexPath) as! TodoListTableViewCell;
+        cell._todoLabel.isEnabled = true;
+            self.tableView.isEditing = true;
             completion(false)
         }
-        added.image = UIImage(named: "Small Image")
-        added.backgroundColor =  UIColor(red: 0.2436070212, green: 0.5393256153, blue: 0.1766586084, alpha: 1)
+        edit.image = UIImage(named: "Small Image")
+        edit.backgroundColor =  UIColor(red: 0.2436070212, green: 0.5393256153, blue: 0.1766586084, alpha: 1)
      
-        let config = UISwipeActionsConfiguration(actions: [taken, added])
+        let config = UISwipeActionsConfiguration(actions: [delete, edit])
         config.performsFirstActionWithFullSwipe = false
      
         return config
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("textfielddidendediting")
+    }
+    
+    ///handle done button in keyboard
+//    @objc func doneButtonClicked(_ sender: Any) {
+//        if (self._currentPath.row == self.items.count){
+//            let cell = tableView.cellForRow(at: self._currentPath) as! AddNewItemTableViewCell;
+//                if !(cell.newItemTextField.text?.isEmpty)!
+//                {
+//                    self.saveItem(newItemText: cell.newItemTextField.text!);
+////                    cell.newItemTickBox.isHidden = true;
+//                }
+//                cell.configure(placeholder:"+ add new item....");
+//                cell.newItemTextField.isEnabled = false;
+//            self.tableView.reloadData();
+//        }
+//    }
     
     @IBAction func addNewFolder(_ sender: UIBarButtonItem) {
     var inputField = UITextField();

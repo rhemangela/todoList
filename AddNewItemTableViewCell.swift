@@ -3,6 +3,7 @@ import UIKit
 class AddNewItemTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet weak var newItemTextField: UITextField!
+    @IBOutlet weak var newItemTickBox: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
