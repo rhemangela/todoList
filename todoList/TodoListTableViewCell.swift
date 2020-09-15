@@ -1,26 +1,21 @@
-//
-//  TodoListTableViewCell.swift
-//  todoList
-//
-//  Created by Angela on 6/9/2020.
-//  Copyright © 2020 AT Production. All rights reserved.
-//
-
 import UIKit
 
-class TodoListTableViewCell: UITableViewCell {
+protocol TodoCellDelegate{
+    
+}
+
+class TodoListTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var _tickBox: UIImageView!
     @IBOutlet weak var _todoLabel: UILabel!
+    var delegate: TodoCellDelegate?
+
     
     override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+        super.awakeFromNib();
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }
