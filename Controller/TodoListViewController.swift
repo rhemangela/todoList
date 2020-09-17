@@ -60,7 +60,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
                 items[indexPath.row].isDone = !items[indexPath.row].isDone;
                 }
             }
-            catch {print(error)}
+            catch {print("did select row errer,\(error)")}
             cell._tickBox.image = items[indexPath.row].isDone ? UIImage(named: "check-square-regular.png") : UIImage(named: "square-regular.png");
             self.tableView.reloadData();
         } else if (indexPath.row == self.items.count){
@@ -77,7 +77,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             do { try self.realm.write {
                 self.realm.delete(self.items[indexPath.row])
                 }}
-            catch { print(error)};
+            catch { print("delete row error,\(error)")};
             self.tableView.deleteRows(at: [indexPath], with: .none);
             self.tableView.reloadData();
         }
@@ -143,7 +143,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         do { try realm.write{
             realm.add(newItem)
             }}
-        catch {print(error)};
+        catch {print("save item error,\(error)")};
         self.tableView.reloadData();
     }
     
@@ -151,7 +151,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         do { try realm.write{
             realm.add(newList)
             }}
-        catch {print(error)};
+        catch {print("save list error,\(error)")};
         self.tableView.reloadData();
     }
     

@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UINavigationBar.appearance().backgroundColor = UIColor(red: 245, green: 0, blue: 87, alpha: 100) ;
         UINavigationBar.appearance().backgroundColor = UIColor.blue;
         IQKeyboardManager.shared.enable = true
-        print(Realm.Configuration.defaultConfiguration.fileURL);
+        print("the folder of Realm,\(Realm.Configuration.defaultConfiguration.fileURL)");
         return true
     }
 
