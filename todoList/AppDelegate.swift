@@ -14,17 +14,12 @@ import IQKeyboardManagerSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        UINavigationBar.appearance().backgroundColor = UIColor(red: 245, green: 0, blue: 87, alpha: 100) ;
-        UINavigationBar.appearance().backgroundColor = UIColor.blue;
         IQKeyboardManager.shared.enable = true
         print("the folder of Realm,\(Realm.Configuration.defaultConfiguration.fileURL)");
+
         return true
     }
-
-    // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
@@ -34,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        self.saveContext();
     }
     
     //variable that store coreData
@@ -47,21 +41,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            })
            return container
        }()
-
-       // MARK: - Core Data Saving support
-
-       func saveContext () {
-           let context = persistentContainer.viewContext
-           if context.hasChanges {
-               do {
-                   try context.save()
-               } catch {
-                   let nserror = error as NSError
-                   fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-               }
-           }
-       }
-
-
 }
 

@@ -8,21 +8,27 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     //    let defaults = UserDefaults.standard;
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext;
     let realm = try! Realm();
-    var listArray = [todoList]();
+    
     var items : Results<Item_>!;
+    var lists: Results<todoList>!;
+    
     var _currentPath :IndexPath = [0,0];
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        
+        lists = realm.objects(todoList.self); //all todoList instances in Realm
         items = realm.objects(Item_.self);
+        
         self.tableView.reloadData();
         self.tableView.tableFooterView = UIView();
         self._currentPath = [0, self.items.count];
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask));
+        print("folder of Realm,\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))");
+
 //       if let temp = defaults.array(forKey: "tempArray") as? [arrayItem] {tempArray = temp;}
     }
 
@@ -70,6 +76,14 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             cell.newItemTextField.becomeFirstResponder()
         }
     }
+   
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+            if (indexPath.row == self.items.count) {
+            return false
+            } else {
+                return true
+        }
+    }
     
     //swipe to delete cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -81,7 +95,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             self.tableView.deleteRows(at: [indexPath], with: .none);
             self.tableView.reloadData();
         }
-    }
+        }
     
     //todo trailing action
 //    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -124,8 +138,8 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     let confirmAction = UIAlertAction(title: "確定", style: UIAlertAction.Style.default) { (UIAlertAction) in
         let newList = todoList()
         newList.title = inputField.text!;
-        self.listArray.append(newList);
-        self.saveList(newList: newList);
+//        self.listArray.append(newList);
+//        self.saveList(newList: newList);
     };
     let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil)
     alert.addAction(confirmAction);
