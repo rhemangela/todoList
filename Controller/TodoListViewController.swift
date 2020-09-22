@@ -10,8 +10,11 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     //    let defaults = UserDefaults.standard;
     let realm = try! Realm();
     
-    var items : Results<Item_>!;
+    var all_items: Results<Item_>!;
+    var selected_items : Results<Item_>!;
     var lists: Results<todoList>!;
+    
+    var currentListName = "defaultList";
     
     var _currentPath :IndexPath = [0,0];
     
@@ -22,32 +25,29 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.dataSource = self;
         
         lists = realm.objects(todoList.self); //all todoList instances in Realm
-        items = realm.objects(Item_.self);// all item instances in Realm
-        print(lists);
-        print(items);
-        print(lists.isEmpty);
+        all_items = realm.objects(Item_.self);// all item instances in Realm
+
         if (lists.isEmpty){
             let newList = todoList();
             newList.title = "defaultList";
             saveList(newList: newList);
-//            currentList = newList;
-        }
-        
-        print(lists);
-        if !(lists.isEmpty){
             self.loadListItems(listName: "defaultList");
+        }
+
+        if !(lists.isEmpty){
+            self.loadListItems(listName: currentListName);
         }
         
         self.tableView.reloadData();
         self.tableView.tableFooterView = UIView();
-        self._currentPath = [0, self.items.count];
+        self._currentPath = [0, self.selected_items.count];
         print("folder of Realm,\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))");
 
 //       if let temp = defaults.array(forKey: "tempArray") as? [arrayItem] {tempArray = temp;}
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        if (indexPath.row == self.items.count){
+        if (indexPath.row == self.selected_items.count){
             let cell = tableView.dequeueReusableCell(withIdentifier: "addNewItemCell", for: indexPath) as! AddNewItemTableViewCell;
             cell.delegate = self;
             cell.newItemTickBox.isHidden = true;
@@ -55,9 +55,9 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TodoListTableViewCell;
             cell.delegate = self;
-            cell._todoLabel?.text = self.items[indexPath.row].issue;
-            cell._tickBox.image = items[indexPath.row].isDone ? UIImage(named: "check-square-gray.png") : UIImage(named: "square-regular.png");
-            cell._todoLabel.textColor =  items[indexPath.row].isDone ? UIColor(red: 0.672, green: 0.675, blue: 0.706, alpha: 1.0) : UIColor.black;
+            cell._todoLabel?.text = self.selected_items[indexPath.row].issue;
+            cell._tickBox.image = selected_items[indexPath.row].isDone ? UIImage(named: "check-square-gray.png") : UIImage(named: "square-regular.png");
+            cell._todoLabel.textColor =  selected_items[indexPath.row].isDone ? UIColor(red: 0.672, green: 0.675, blue: 0.706, alpha: 1.0) : UIColor.black;
             return cell;
         }
     }
@@ -65,7 +65,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        self.items.count+1;
     
-        if let listItems = items {
+        if let listItems = selected_items {
             return listItems.count+1
         } else {
             return 1
@@ -79,16 +79,16 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     //when tapping cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("select");
-        if (indexPath.row != self.items.count){
+        if (indexPath.row != self.selected_items.count){
             let cell = tableView.cellForRow(at: indexPath) as! TodoListTableViewCell;
             do { try realm.write {
-                items[indexPath.row].isDone = !items[indexPath.row].isDone;
+                selected_items[indexPath.row].isDone = !selected_items[indexPath.row].isDone;
                 }
             }
             catch {print("did select row errer,\(error)")}
-            cell._tickBox.image = items[indexPath.row].isDone ? UIImage(named: "check-square-regular.png") : UIImage(named: "square-regular.png");
+            cell._tickBox.image = selected_items[indexPath.row].isDone ? UIImage(named: "check-square-regular.png") : UIImage(named: "square-regular.png");
             self.tableView.reloadData();
-        } else if (indexPath.row == self.items.count){
+        } else if (indexPath.row == self.selected_items.count){
             let cell = self.tableView.cellForRow(at: indexPath) as! AddNewItemTableViewCell;
             cell.newItemTickBox.isHidden = false;
             cell.newItemTextField.isEnabled = true;
@@ -97,7 +97,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-            if (indexPath.row == self.items.count) {
+            if (indexPath.row == self.selected_items.count) {
             return false
             } else {
                 return true
@@ -108,7 +108,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             do { try self.realm.write {
-                self.realm.delete(self.items[indexPath.row])
+                self.realm.delete(self.selected_items[indexPath.row])
                 }}
             catch { print("delete row error,\(error)")};
             self.tableView.deleteRows(at: [indexPath], with: .none);
@@ -171,7 +171,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func loadListItems(listName: String){
-        items = self.items.filter("color = 'tan' AND name BEGINSWITH 'B'")
+        self.selected_items = self.all_items.filter("ownerList = 'defaultList'")
     }
     
     func saveItem(newItemText:String){
