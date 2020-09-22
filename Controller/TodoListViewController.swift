@@ -16,8 +16,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     
     var currentListName = "defaultList";
     
-    var _currentPath :IndexPath = [0,0];
-    
     override func viewDidLoad() {
         super.viewDidLoad();
         
@@ -28,19 +26,17 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         all_items = realm.objects(Item_.self);// all item instances in Realm
 
         if (lists.isEmpty){
-            let newList = todoList();
-            newList.title = "defaultList";
-            saveList(newList: newList);
-            self.loadListItems(listName: "defaultList");
+            createNewList(name: "defaultList")
         }
 
         if !(lists.isEmpty){
-            self.loadListItems(listName: currentListName);
+            self.loadListItems();
         }
+        
+        self.title = currentListName;
         
         self.tableView.reloadData();
         self.tableView.tableFooterView = UIView();
-        self._currentPath = [0, self.selected_items.count];
         print("folder of Realm,\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))");
 
 //       if let temp = defaults.array(forKey: "tempArray") as? [arrayItem] {tempArray = temp;}
@@ -149,35 +145,46 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     // add new folder
     @IBAction func addNewFolder(_ sender: UIBarButtonItem) {
     var inputField = UITextField();
-    let alert = UIAlertController(title: "新增清單", message: "請輪入名稱...", preferredStyle: UIAlertController.Style.alert);
-    let confirmAction = UIAlertAction(title: "確定", style: UIAlertAction.Style.default) { (UIAlertAction) in
-        let newList = todoList()
-        newList.title = inputField.text!;
-//        self.listArray.append(newList);
-//        self.saveList(newList: newList);
+    let alert = UIAlertController(title: "Add new List", message: "enter a name..", preferredStyle: UIAlertController.Style.alert);
+    let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default) { (UIAlertAction) in
+        if let listName = inputField.text {
+            self.createNewList(name: listName)}
     };
-    let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: nil)
+    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
     alert.addAction(confirmAction);
     alert.addAction(cancelAction);
     alert.addTextField { (UITextField) in
-            UITextField.placeholder = "例如： 1/9購物單";
+            UITextField.placeholder = "eg. shopping list";
             inputField = UITextField;
         }
     present(alert,animated: true, completion: nil);
       }
 
+    
+    @IBAction func deleteFolder(_ sender: Any) {
+        let alert = UIAlertController(title: "Are you sure delete current list? ", message: "", preferredStyle: UIAlertController.Style.alert);
+        let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default) { (UIAlertAction) in
+            //TODO: add logic
+        };
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+        alert.addAction(confirmAction);
+        alert.addAction(cancelAction);
+        present(alert,animated: true, completion: nil);
+    }
+    
+    
     func addNewItem(string: String) {
         self.saveItem(newItemText: string);
     }
     
-    func loadListItems(listName: String){
-        self.selected_items = self.all_items.filter("ownerList = 'defaultList'")
+    func loadListItems(){
+        self.selected_items = self.all_items.filter("ownerList = '\(currentListName)'");
     }
     
     func saveItem(newItemText:String){
         let newItem = Item_();
         newItem.issue = newItemText;
-        newItem.ownerList = "defaultList";
+        newItem.ownerList = self.currentListName;
         do { try realm.write{
             realm.add(newItem)
             }}
@@ -185,11 +192,16 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.reloadData();
     }
     
-    func saveList(newList:todoList){
+    func createNewList(name: String){
+        let newList = todoList();
+        newList.title = name;
         do { try realm.write{
             realm.add(newList)
             }}
         catch {print("save list error,\(error)")};
+        currentListName = name;
+        self.loadListItems();
+        self.title = currentListName;
         self.tableView.reloadData();
     }
     

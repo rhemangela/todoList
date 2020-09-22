@@ -38,11 +38,11 @@
             </objects>
             <point key="canvasLocation" x="4219" y="404"/>
         </scene>
-        <!--Setting-->
+        <!--Navigation Controller-->
         <scene sceneID="bff-Ia-yfq">
             <objects>
                 <navigationController id="tPS-FS-CXx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="Setting" image="gearshape.fill" catalog="system" id="3Yy-PV-D4s"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="" image="gearshape.fill" catalog="system" id="3Yy-PV-D4s"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GPl-J2-sfq">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -59,11 +59,11 @@
             </objects>
             <point key="canvasLocation" x="3445" y="405"/>
         </scene>
-        <!--List-->
+        <!--Navigation Controller-->
         <scene sceneID="5vL-04-G15">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mkz-Wc-CsG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" image="list.bullet" catalog="system" id="SbJ-zr-qZh"/>
+                    <tabBarItem key="tabBarItem" title="" image="list.bullet" catalog="system" id="SbJ-zr-qZh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HC8-BH-whd">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -161,6 +161,9 @@
                     <navigationItem key="navigationItem" title="List" id="hPO-Po-OPS">
                         <barButtonItem key="leftBarButtonItem" systemItem="trash" id="pL9-pU-BNe">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="deleteFolder:" destination="LpS-Yy-QHC" id="sHr-xQ-CmJ"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="S1W-lD-iFb">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
