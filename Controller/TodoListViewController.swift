@@ -74,7 +74,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     
     //when tapping cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("select");
         if (indexPath.row != self.selected_items.count){
             let cell = tableView.cellForRow(at: indexPath) as! TodoListTableViewCell;
             do { try realm.write {
@@ -111,44 +110,21 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             self.tableView.reloadData();
         }
         }
-    
-    //todo trailing action
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//
-//        let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completion) in
-//            do { try self.realm.write {
-//                self.realm.delete(self.items[indexPath.row])
-//                }}
-//            catch { print(error)};
-//            self.tableView.deleteRows(at: [indexPath], with: .none);
-//            self.tableView.reloadData();
-//            completion(true)
-//        }
-//        delete.backgroundColor =  UIColor(red: 0.991, green: 0.184, blue: 0.462, alpha: 1.0)
-//
-//        let edit = UIContextualAction(style: .normal, title: "Added") { (action, view, completion) in
-//        let cell = self.tableView.cellForRow(at: indexPath) as! TodoListTableViewCell;
-//        cell._todoLabel.isEnabled = true;
-//            self.tableView.isEditing = true;
-//            completion(false)
-//        }
-//        edit.image = UIImage(named: "Small Image")
-//        edit.backgroundColor =  UIColor(red: 0.2436070212, green: 0.5393256153, blue: 0.1766586084, alpha: 1)
-//
-//        let config = UISwipeActionsConfiguration(actions: [delete, edit])
-//        config.performsFirstActionWithFullSwipe = false
-//
-//        return config
-//    }
-    
-    
+        
     // add new folder
     @IBAction func addNewFolder(_ sender: UIBarButtonItem) {
     var inputField = UITextField();
-    let alert = UIAlertController(title: "Add new List", message: "enter a name..", preferredStyle: UIAlertController.Style.alert);
+    let alert = UIAlertController(title: "Add new List", message: "", preferredStyle: UIAlertController.Style.alert);
     let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default) { (UIAlertAction) in
         if let listName = inputField.text {
-            self.createNewList(name: listName)}
+            if (!listName.isEmpty){
+                for item in self.lists {
+                    if (item.title == listName){
+                        break
+                    }
+                }
+                self.createNewList(name: listName)}
+        }
     };
     let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
     alert.addAction(confirmAction);
@@ -164,14 +140,34 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func deleteFolder(_ sender: Any) {
         let alert = UIAlertController(title: "Are you sure delete current list? ", message: "", preferredStyle: UIAlertController.Style.alert);
         let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default) { (UIAlertAction) in
-            //TODO: add logic
+            if (self.lists.count > 1) {
+                //delete all items in list
+                let item = self.realm.objects(Item_.self).filter("ownerList ==  '\(self.currentListName)'");
+                try! self.realm.write {
+                    self.realm.delete(item)
+                }
+                //delete current list
+                let list = self.realm.objects(todoList.self).filter("title ==  '\(self.currentListName)'");
+                try! self.realm.write {
+                    self.realm.delete(list)
+                }
+                self.currentListName = self.lists.last?.title ?? self.currentListName;
+            } else { // if there is only one list
+                try! self.realm.write {
+                    self.realm.deleteAll()
+                }
+                self.currentListName = "defaultList";
+                self.createNewList(name: "defaultList")
+            }
+            self.loadListItems();
+            self.tableView.reloadData();
+            self.title = self.currentListName;
         };
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
         alert.addAction(confirmAction);
         alert.addAction(cancelAction);
         present(alert,animated: true, completion: nil);
     }
-    
     
     func addNewItem(string: String) {
         self.saveItem(newItemText: string);
@@ -204,6 +200,33 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.title = currentListName;
         self.tableView.reloadData();
     }
-    
 }
 
+//todo trailing action
+//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//
+//        let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completion) in
+//            do { try self.realm.write {
+//                self.realm.delete(self.items[indexPath.row])
+//                }}
+//            catch { print(error)};
+//            self.tableView.deleteRows(at: [indexPath], with: .none);
+//            self.tableView.reloadData();
+//            completion(true)
+//        }
+//        delete.backgroundColor =  UIColor(red: 0.991, green: 0.184, blue: 0.462, alpha: 1.0)
+//
+//        let edit = UIContextualAction(style: .normal, title: "Added") { (action, view, completion) in
+//        let cell = self.tableView.cellForRow(at: indexPath) as! TodoListTableViewCell;
+//        cell._todoLabel.isEnabled = true;
+//            self.tableView.isEditing = true;
+//            completion(false)
+//        }
+//        edit.image = UIImage(named: "Small Image")
+//        edit.backgroundColor =  UIColor(red: 0.2436070212, green: 0.5393256153, blue: 0.1766586084, alpha: 1)
+//
+//        let config = UISwipeActionsConfiguration(actions: [delete, edit])
+//        config.performsFirstActionWithFullSwipe = false
+//
+//        return config
+//    }
