@@ -43,7 +43,6 @@ class AddNewItemTableViewCell: UITableViewCell, UITextFieldDelegate {
     func configNewItem(){
         if let newItem = newItemTextField.text {
         if (!newItem.isEmpty){
-            print("ready to delegate...")
             delegate?.addNewItem(string: newItem);
             newItemTextField.text = "";
             newItemTextField.placeholder = "+ add new item....";

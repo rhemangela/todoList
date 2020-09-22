@@ -12,8 +12,8 @@
 		0B708E492504FE2600EC0DA0 /* listData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B708E472504FE2600EC0DA0 /* listData.xcdatamodeld */; };
 		0B962CC42503B9C4006C4D2F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B962CC32503B9C4006C4D2F /* SettingTableViewController.swift */; };
 		0B962CC62503F698006C4D2F /* TodoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B962CC52503F698006C4D2F /* TodoListTableViewCell.swift */; };
+		0BA1458F251665EE00C46CF7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1458E251665EE00C46CF7 /* CustomTabBar.swift */; };
 		0BA9C1422507BF7900020AFE /* todoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA9C1412507BF7900020AFE /* todoList.swift */; };
-		0BA9C1442507C05400020AFE /* listAppendix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA9C1432507C05400020AFE /* listAppendix.swift */; };
 		0BBC700B24CDB716004D6157 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC700A24CDB716004D6157 /* AppDelegate.swift */; };
 		0BBC700D24CDB716004D6157 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC700C24CDB716004D6157 /* SceneDelegate.swift */; };
 		0BBC700F24CDB716004D6157 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC700E24CDB716004D6157 /* TodoListViewController.swift */; };
@@ -30,8 +30,8 @@
 		0B708E482504FE2600EC0DA0 /* listData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = listData.xcdatamodel; sourceTree = "<group>"; };
 		0B962CC32503B9C4006C4D2F /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		0B962CC52503F698006C4D2F /* TodoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListTableViewCell.swift; sourceTree = "<group>"; };
+		0BA1458E251665EE00C46CF7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		0BA9C1412507BF7900020AFE /* todoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoList.swift; sourceTree = "<group>"; };
-		0BA9C1432507C05400020AFE /* listAppendix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listAppendix.swift; sourceTree = "<group>"; };
 		0BBC700724CDB716004D6157 /* todoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BBC700A24CDB716004D6157 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BBC700C24CDB716004D6157 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,7 +63,6 @@
 			children = (
 				0BD0ED142507964300C67CD0 /* Item_.swift */,
 				0BA9C1412507BF7900020AFE /* todoList.swift */,
-				0BA9C1432507C05400020AFE /* listAppendix.swift */,
 				0B708E472504FE2600EC0DA0 /* listData.xcdatamodeld */,
 			);
 			path = DataModel;
@@ -84,6 +83,7 @@
 				0B53E7DE250D233600147975 /* NavBar.swift */,
 				0BBC701524CDB719004D6157 /* LaunchScreen.storyboard */,
 				0BBC701024CDB716004D6157 /* Main.storyboard */,
+				0BA1458E251665EE00C46CF7 /* CustomTabBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +264,7 @@
 			files = (
 				0BD0ED152507964300C67CD0 /* Item_.swift in Sources */,
 				0B708E492504FE2600EC0DA0 /* listData.xcdatamodeld in Sources */,
+				0BA1458F251665EE00C46CF7 /* CustomTabBar.swift in Sources */,
 				0BBC700F24CDB716004D6157 /* TodoListViewController.swift in Sources */,
 				0BA9C1422507BF7900020AFE /* todoList.swift in Sources */,
 				0BBC700B24CDB716004D6157 /* AppDelegate.swift in Sources */,
@@ -271,7 +272,6 @@
 				0B962CC42503B9C4006C4D2F /* SettingTableViewController.swift in Sources */,
 				0B53E7DF250D233600147975 /* NavBar.swift in Sources */,
 				0B2891DA25090F11004DEF0C /* AddNewItemTableViewCell.swift in Sources */,
-				0BA9C1442507C05400020AFE /* listAppendix.swift in Sources */,
 				0B962CC62503F698006C4D2F /* TodoListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,7 +22,21 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.dataSource = self;
         
         lists = realm.objects(todoList.self); //all todoList instances in Realm
-        items = realm.objects(Item_.self);
+        items = realm.objects(Item_.self);// all item instances in Realm
+        print(lists);
+        print(items);
+        print(lists.isEmpty);
+        if (lists.isEmpty){
+            let newList = todoList();
+            newList.title = "defaultList";
+            saveList(newList: newList);
+//            currentList = newList;
+        }
+        
+        print(lists);
+        if !(lists.isEmpty){
+            self.loadListItems(listName: "defaultList");
+        }
         
         self.tableView.reloadData();
         self.tableView.tableFooterView = UIView();
@@ -37,7 +51,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             let cell = tableView.dequeueReusableCell(withIdentifier: "addNewItemCell", for: indexPath) as! AddNewItemTableViewCell;
             cell.delegate = self;
             cell.newItemTickBox.isHidden = true;
-//            cell._todoLabel?.text = "+ add new items...";
             return cell;
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TodoListTableViewCell;
@@ -50,11 +63,17 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.items.count+1;
+//        self.items.count+1;
+    
+        if let listItems = items {
+            return listItems.count+1
+        } else {
+            return 1
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        1;
+        return 1;
     }
     
     //when tapping cell
@@ -126,10 +145,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
 //        return config
 //    }
     
-    func addNewItem(string: String) {
-        print("VC delegate call");
-        self.saveItem(newItemText: string);
-    }
     
     // add new folder
     @IBAction func addNewFolder(_ sender: UIBarButtonItem) {
@@ -151,9 +166,18 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     present(alert,animated: true, completion: nil);
       }
 
+    func addNewItem(string: String) {
+        self.saveItem(newItemText: string);
+    }
+    
+    func loadListItems(listName: String){
+        items = self.items.filter("color = 'tan' AND name BEGINSWITH 'B'")
+    }
+    
     func saveItem(newItemText:String){
         let newItem = Item_();
         newItem.issue = newItemText;
+        newItem.ownerList = "defaultList";
         do { try realm.write{
             realm.add(newItem)
             }}

@@ -4,5 +4,5 @@ import RealmSwift
 class Item_ : Object {
     @objc dynamic var issue : String = "";
     @objc dynamic var isDone: Bool = false;
-    var parentList = LinkingObjects(fromType: todoList.self, property: "items")
+    @objc dynamic var ownerList: String?
 }
