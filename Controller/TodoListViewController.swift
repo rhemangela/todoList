@@ -3,10 +3,12 @@ import CoreData
 import RealmSwift
 import IQKeyboardManagerSwift
 
-class TodoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CustomCellDelegate, TodoCellDelegate {
+class TodoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDelegate,UIPickerViewDataSource,  CustomCellDelegate, TodoCellDelegate {
     
     @IBOutlet var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var listPicker: ListPickerView!
+    
     //    let defaults = UserDefaults.standard;
     let realm = try! Realm();
     
@@ -15,12 +17,15 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     var lists: Results<todoList>!;
     
     var currentListName = "defaultList";
+    let navBarBtn =  UIButton(type: .custom);
     
     override func viewDidLoad() {
         super.viewDidLoad();
         
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        self.listPicker.delegate = self;
+        self.listPicker.dataSource = self;
         
         lists = realm.objects(todoList.self); //all todoList instances in Realm
         all_items = realm.objects(Item_.self);// all item instances in Realm
@@ -33,12 +38,18 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             self.loadListItems();
         }
         
-        self.title = currentListName;
-        
         self.tableView.reloadData();
         self.tableView.tableFooterView = UIView();
         print("folder of Realm,\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))");
 
+        // make navBar title clickable to choose list
+        navBarBtn.frame = CGRect(x: 0, y: 0, width: 100, height: 35)
+        navBarBtn.setTitle(self.currentListName, for: .normal);
+        navBarBtn.titleLabel?.font =  UIFont(name: "System Font Regular", size: 30);
+        navBarBtn.addTarget(self, action: #selector(clickOnButton), for: .touchUpInside)
+        navigationItem.titleView = navBarBtn
+        
+        
 //       if let temp = defaults.array(forKey: "tempArray") as? [arrayItem] {tempArray = temp;}
     }
 
@@ -110,14 +121,35 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             self.tableView.reloadData();
         }
         }
-        
+   
+    //choose list
+    @objc func clickOnButton() {
+        self.listPicker.isHidden = !self.listPicker.isHidden;
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.lists.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        self.lists[row].title
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print(self.lists[row].title)
+    }
+    
     // add new folder
     @IBAction func addNewFolder(_ sender: UIBarButtonItem) {
     var inputField = UITextField();
     let alert = UIAlertController(title: "Add new List", message: "", preferredStyle: UIAlertController.Style.alert);
     let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default) { (UIAlertAction) in
         if let listName = inputField.text {
-            if (!listName.isEmpty){
+            if (!listName.trimmingCharacters(in: .whitespaces).isEmpty){
                 for item in self.lists {
                     if (item.title == listName){
                         break
@@ -130,7 +162,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     alert.addAction(confirmAction);
     alert.addAction(cancelAction);
     alert.addTextField { (UITextField) in
-            UITextField.placeholder = "eg. shopping list";
+            UITextField.placeholder = "please enter the name of List";
             inputField = UITextField;
         }
     present(alert,animated: true, completion: nil);
@@ -138,7 +170,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
 
     
     @IBAction func deleteFolder(_ sender: Any) {
-        let alert = UIAlertController(title: "Are you sure delete current list? ", message: "", preferredStyle: UIAlertController.Style.alert);
+        let alert = UIAlertController(title: "Are you sure delete current list? ", message: "all items inside this list will also be deleted", preferredStyle: UIAlertController.Style.alert);
         let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default) { (UIAlertAction) in
             if (self.lists.count > 1) {
                 //delete all items in list
@@ -161,7 +193,9 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             }
             self.loadListItems();
             self.tableView.reloadData();
+            self.listPicker.reloadAllComponents();
             self.title = self.currentListName;
+            self.navBarBtn.setTitle(self.currentListName, for: .normal);
         };
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
         alert.addAction(confirmAction);
@@ -197,8 +231,9 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         catch {print("save list error,\(error)")};
         currentListName = name;
         self.loadListItems();
-        self.title = currentListName;
+        navBarBtn.setTitle(self.currentListName, for: .normal);
         self.tableView.reloadData();
+        self.listPicker.reloadAllComponents();
     }
 }
 

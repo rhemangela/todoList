@@ -27,13 +27,11 @@ class AddNewItemTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     //when tag outside textfield ||  press DONE button
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("custom cell DidEndEditing");
         self.configNewItem();
     }
     
     // when press RETURN button
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("custom cell textFieldShouldReturn");
         textField.resignFirstResponder();
         self.configNewItem();
         return true

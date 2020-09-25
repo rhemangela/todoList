@@ -10,6 +10,7 @@
 		0B2891DA25090F11004DEF0C /* AddNewItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2891D925090F11004DEF0C /* AddNewItemTableViewCell.swift */; };
 		0B53E7DF250D233600147975 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B53E7DE250D233600147975 /* NavBar.swift */; };
 		0B708E492504FE2600EC0DA0 /* listData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B708E472504FE2600EC0DA0 /* listData.xcdatamodeld */; };
+		0B7ABB91251B626500413652 /* ListPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7ABB90251B626500413652 /* ListPickerView.swift */; };
 		0B962CC42503B9C4006C4D2F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B962CC32503B9C4006C4D2F /* SettingTableViewController.swift */; };
 		0B962CC62503F698006C4D2F /* TodoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B962CC52503F698006C4D2F /* TodoListTableViewCell.swift */; };
 		0BA1458F251665EE00C46CF7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1458E251665EE00C46CF7 /* CustomTabBar.swift */; };
@@ -28,6 +29,7 @@
 		0B2891D925090F11004DEF0C /* AddNewItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		0B53E7DE250D233600147975 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavBar.swift; path = Controller/NavBar.swift; sourceTree = SOURCE_ROOT; };
 		0B708E482504FE2600EC0DA0 /* listData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = listData.xcdatamodel; sourceTree = "<group>"; };
+		0B7ABB90251B626500413652 /* ListPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPickerView.swift; sourceTree = "<group>"; };
 		0B962CC32503B9C4006C4D2F /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		0B962CC52503F698006C4D2F /* TodoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListTableViewCell.swift; sourceTree = "<group>"; };
 		0BA1458E251665EE00C46CF7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				0BBC700A24CDB716004D6157 /* AppDelegate.swift */,
 				0BBC700C24CDB716004D6157 /* SceneDelegate.swift */,
 				0B962CC52503F698006C4D2F /* TodoListTableViewCell.swift */,
+				0B7ABB90251B626500413652 /* ListPickerView.swift */,
 			);
 			path = todoList;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				0B708E492504FE2600EC0DA0 /* listData.xcdatamodeld in Sources */,
 				0BA1458F251665EE00C46CF7 /* CustomTabBar.swift in Sources */,
 				0BBC700F24CDB716004D6157 /* TodoListViewController.swift in Sources */,
+				0B7ABB91251B626500413652 /* ListPickerView.swift in Sources */,
 				0BA9C1422507BF7900020AFE /* todoList.swift in Sources */,
 				0BBC700B24CDB716004D6157 /* AppDelegate.swift in Sources */,
 				0BBC700D24CDB716004D6157 /* SceneDelegate.swift in Sources */,
