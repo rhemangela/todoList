@@ -11,7 +11,8 @@ class AddNewItemTableViewCell: UITableViewCell, UITextFieldDelegate {
     var delegate: CustomCellDelegate?
     
     override func awakeFromNib() {
-        super.awakeFromNib()
+        super.awakeFromNib();
+        newItemTextField.placeholder = NSLocalizedString("addNewItem", comment: "")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -43,7 +44,8 @@ class AddNewItemTableViewCell: UITableViewCell, UITextFieldDelegate {
         if (!newItem.isEmpty){
             delegate?.addNewItem(string: newItem);
             newItemTextField.text = "";
-            newItemTextField.placeholder = "+ add new item....";
+            newItemTextField.placeholder = NSLocalizedString("addNewItem", comment: "")
+//            newItemTextField.placeholder = "+ add new item....";
             }
         else {
             newItemTickBox.isHidden = true;

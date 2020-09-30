@@ -131,7 +131,7 @@
                                                     <rect key="frame" x="15" y="3.0666441644916631" width="30" height="65"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="+ add new item..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2dJ-4c-0Dk">
+                                                <textField opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="fill" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2dJ-4c-0Dk">
                                                     <rect key="frame" x="75" y="18.939283982238749" width="387.99999999999955" height="33.999999999999886"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="27"/>
@@ -148,8 +148,11 @@
                                 </prototypes>
                             </tableView>
                             <pickerView hidden="YES" clipsSubviews="YES" contentMode="center" id="659-L1-u2b" customClass="ListPickerView" customModule="todoList" customModuleProvider="target">
-                                <rect key="frame" x="3" y="426" width="408" height="44"/>
+                                <rect key="frame" x="3" y="426" width="408" height="243"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES" playsSound="YES"/>
+                                </accessibility>
                             </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zAe-zx-Fm4"/>

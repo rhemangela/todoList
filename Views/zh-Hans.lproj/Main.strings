@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "Hello World!"; ObjectID = "hNl-b7-tHP"; */
+"hNl-b7-tHP.text" = "Hello World!";
+
+/* Class = "UINavigationItem"; title = "List"; ObjectID = "hPO-Po-OPS"; */
+"hPO-Po-OPS.title" = "List";
+
+/* Class = "UINavigationItem"; title = "Root View Controller"; ObjectID = "pW5-9W-K10"; */
+"pW5-9W-K10.title" = "Root View Controller";

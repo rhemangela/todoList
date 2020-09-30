@@ -13,7 +13,7 @@ class SettingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.navigationBar.topItem?.title = "Setting"
+        self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("setting", comment: "")
         self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont(name: "System Font Regular", size: 30), NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     

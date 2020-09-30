@@ -1,0 +1,8 @@
+"addNewItem" = "+ ...新增項目";
+"addNewFolder" = "建立新清單";
+"enterNewListName" = "請輪入清單名字";
+"confirm" = "確定";
+"cancel" = "取消";
+"deleteListMsg" = "確定要刪除所在清單？";
+"deleteListMsgDetail" = "此清單內的所有資料也會一併刪除";
+"setting" = "設定";

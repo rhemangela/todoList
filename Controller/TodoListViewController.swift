@@ -9,6 +9,8 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var listPicker: ListPickerView!
     
+    let fullScreenSize = UIScreen.main.bounds.size;
+    
     //    let defaults = UserDefaults.standard;
     let realm = try! Realm();
     
@@ -26,6 +28,9 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.dataSource = self;
         self.listPicker.delegate = self;
         self.listPicker.dataSource = self;
+        self.listPicker.frame(forAlignmentRect: CGRect(
+                                x: 0, y: fullScreenSize.height * 0.3,
+                                width: fullScreenSize.width, height: 150));
         
         lists = realm.objects(todoList.self); //all todoList instances in Realm
         all_items = realm.objects(Item_.self);// all item instances in Realm
@@ -146,8 +151,8 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     // add new folder
     @IBAction func addNewFolder(_ sender: UIBarButtonItem) {
     var inputField = UITextField();
-    let alert = UIAlertController(title: "Add new List", message: "", preferredStyle: UIAlertController.Style.alert);
-    let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default) { (UIAlertAction) in
+    let alert = UIAlertController(title: NSLocalizedString("addNewFolder", comment: ""), message: "", preferredStyle: UIAlertController.Style.alert);
+    let confirmAction = UIAlertAction(title: NSLocalizedString("confirm", comment: ""), style: UIAlertAction.Style.default) { (UIAlertAction) in
         if let listName = inputField.text {
             if (!listName.trimmingCharacters(in: .whitespaces).isEmpty){
                 for item in self.lists {
@@ -158,11 +163,11 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
                 self.createNewList(name: listName)}
         }
     };
-    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+    let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)
     alert.addAction(confirmAction);
     alert.addAction(cancelAction);
     alert.addTextField { (UITextField) in
-            UITextField.placeholder = "please enter the name of List";
+            UITextField.placeholder = NSLocalizedString("enterNewListName", comment: "");
             inputField = UITextField;
         }
     present(alert,animated: true, completion: nil);
@@ -170,8 +175,8 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
 
     
     @IBAction func deleteFolder(_ sender: Any) {
-        let alert = UIAlertController(title: "Are you sure delete current list? ", message: "all items inside this list will also be deleted", preferredStyle: UIAlertController.Style.alert);
-        let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default) { (UIAlertAction) in
+        let alert = UIAlertController(title: NSLocalizedString("deleteListMsg", comment: ""), message: NSLocalizedString("deleteListMsgDetail", comment: ""), preferredStyle: UIAlertController.Style.alert);
+        let confirmAction = UIAlertAction(title: NSLocalizedString("confirm", comment: ""), style: UIAlertAction.Style.default) { (UIAlertAction) in
             if (self.lists.count > 1) {
                 //delete all items in list
                 let item = self.realm.objects(Item_.self).filter("ownerList ==  '\(self.currentListName)'");
@@ -197,7 +202,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             self.title = self.currentListName;
             self.navBarBtn.setTitle(self.currentListName, for: .normal);
         };
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)
         alert.addAction(confirmAction);
         alert.addAction(cancelAction);
         present(alert,animated: true, completion: nil);
