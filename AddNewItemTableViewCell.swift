@@ -12,6 +12,7 @@ class AddNewItemTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib();
+        self.backgroundColor = UIColor(red: 1.0, green: 0.99, blue: 0.99, alpha: 1.0);
         newItemTextField.placeholder = NSLocalizedString("addNewItem", comment: "")
     }
 

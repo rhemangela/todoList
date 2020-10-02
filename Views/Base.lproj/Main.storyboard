@@ -46,7 +46,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GPl-J2-sfq">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.17077735066413879" green="0.30895513296127319" blue="0.37797331809997559" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.28728589415550232" green="0.1402067244052887" blue="0.30659055709838867" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
@@ -63,12 +63,21 @@
         <scene sceneID="5vL-04-G15">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mkz-Wc-CsG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="list.bullet" catalog="system" id="SbJ-zr-qZh"/>
+                    <tabBarItem key="tabBarItem" title="" image="list.bullet" catalog="system" id="SbJ-zr-qZh">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" systemColor="systemRedColor"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" systemColor="systemYellowColor"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HC8-BH-whd">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.17077735066413879" green="0.30895513296127319" blue="0.37797331809997559" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.28728589415550232" green="0.1402067244052887" blue="0.30659055709838867" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
@@ -90,15 +99,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rsk-sT-ZBn">
-                                <rect key="frame" x="3" y="90" width="408" height="674"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="65" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rsk-sT-ZBn">
+                                <rect key="frame" x="3" y="0.0" width="408" height="764"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="customCell" id="OsC-zc-ID1" customClass="TodoListTableViewCell" customModule="todoList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="408" height="70"/>
+                                        <rect key="frame" x="0.0" y="28" width="408" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OsC-zc-ID1" id="Ptw-Tr-l3F">
-                                            <rect key="frame" x="0.0" y="0.0" width="408" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="408" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square-regular" translatesAutoresizingMaskIntoConstraints="NO" id="BVs-aJ-VX4">
@@ -108,7 +117,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" text="Hello World!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNl-b7-tHP">
                                                     <rect key="frame" x="75" y="6.7519461624415271" width="299.99999999999955" height="60.000000000000114"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="35"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <size key="shadowOffset" width="0.0" height="0.0"/>
@@ -121,10 +130,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addNewItemCell" id="ECT-b5-c9U" customClass="AddNewItemTableViewCell" customModule="todoList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="98" width="408" height="70"/>
+                                        <rect key="frame" x="0.0" y="93" width="408" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ECT-b5-c9U" id="z8W-29-P4P">
-                                            <rect key="frame" x="0.0" y="0.0" width="408" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="408" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square-regular" translatesAutoresizingMaskIntoConstraints="NO" id="pUc-Nh-IuE">
@@ -134,7 +143,7 @@
                                                 <textField opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="fill" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2dJ-4c-0Dk">
                                                     <rect key="frame" x="75" y="18.939283982238749" width="387.99999999999955" height="33.999999999999886"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
@@ -147,21 +156,19 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <pickerView hidden="YES" clipsSubviews="YES" contentMode="center" id="659-L1-u2b" customClass="ListPickerView" customModule="todoList" customModuleProvider="target">
-                                <rect key="frame" x="3" y="426" width="408" height="243"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" button="YES" playsSound="YES"/>
-                                </accessibility>
-                            </pickerView>
+                            <view hidden="YES" alpha="0.20000000000000001" contentMode="scaleToFill" id="Bj9-Nm-zm6">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zAe-zx-Fm4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Rsk-sT-ZBn" firstAttribute="leading" secondItem="zAe-zx-Fm4" secondAttribute="leading" constant="3" id="0s0-rn-3K2"/>
-                            <constraint firstItem="Rsk-sT-ZBn" firstAttribute="top" secondItem="NNy-nR-MmY" secondAttribute="top" constant="90" id="9u8-O3-H8P"/>
+                            <constraint firstItem="Rsk-sT-ZBn" firstAttribute="top" secondItem="NNy-nR-MmY" secondAttribute="top" id="9u8-O3-H8P"/>
+                            <constraint firstItem="zAe-zx-Fm4" firstAttribute="bottom" secondItem="Rsk-sT-ZBn" secondAttribute="bottom" id="HKz-qS-k9n"/>
                             <constraint firstItem="zAe-zx-Fm4" firstAttribute="trailing" secondItem="Rsk-sT-ZBn" secondAttribute="trailing" constant="3" id="KGD-eA-yZn"/>
-                            <constraint firstItem="zAe-zx-Fm4" firstAttribute="bottom" secondItem="Rsk-sT-ZBn" secondAttribute="bottom" id="haH-wU-P4j"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -181,8 +188,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="heightConstraint" destination="haH-wU-P4j" id="xpP-xz-2eK"/>
-                        <outlet property="listPicker" destination="659-L1-u2b" id="CM4-BP-35g"/>
+                        <outlet property="blur_bg" destination="Bj9-Nm-zm6" id="a7t-gp-zSy"/>
                         <outlet property="tableView" destination="Rsk-sT-ZBn" id="spw-hw-SUu"/>
                     </connections>
                 </viewController>
@@ -215,6 +221,12 @@
         <image name="square-regular" width="100" height="100"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

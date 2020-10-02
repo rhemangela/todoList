@@ -14,7 +14,7 @@ class SettingTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("setting", comment: "")
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont(name: "System Font Regular", size: 30), NSAttributedString.Key.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont(name: "System Font Regular", size: 23), NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
     // MARK: - Table view data source

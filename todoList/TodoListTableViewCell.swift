@@ -11,6 +11,7 @@ class TodoListTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     
     override func awakeFromNib() {
+        self.backgroundColor = UIColor(red: 1.0, green: 0.99, blue: 0.99, alpha: 1.0);
         super.awakeFromNib();
     }
 

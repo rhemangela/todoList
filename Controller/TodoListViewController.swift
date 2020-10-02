@@ -7,19 +7,20 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var listPicker: ListPickerView!
+    @IBOutlet weak var blur_bg: UIView!
+    //    @IBOutlet weak var listPicker: ListPickerView!
     
     let fullScreenSize = UIScreen.main.bounds.size;
-    
+    let listPicker: UIPickerView = UIPickerView();
+    let navBarBtn =  UIButton(type: .custom);
+
     //    let defaults = UserDefaults.standard;
     let realm = try! Realm();
-    
     var all_items: Results<Item_>!;
     var selected_items : Results<Item_>!;
     var lists: Results<todoList>!;
-    
     var currentListName = "defaultList";
-    let navBarBtn =  UIButton(type: .custom);
+
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -28,9 +29,9 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.dataSource = self;
         self.listPicker.delegate = self;
         self.listPicker.dataSource = self;
-        self.listPicker.frame(forAlignmentRect: CGRect(
-                                x: 0, y: fullScreenSize.height * 0.3,
-                                width: fullScreenSize.width, height: 150));
+
+        createPicker();
+        initNavBar(); // make navBar title clickable to choose list
         
         lists = realm.objects(todoList.self); //all todoList instances in Realm
         all_items = realm.objects(Item_.self);// all item instances in Realm
@@ -45,15 +46,9 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.tableView.reloadData();
         self.tableView.tableFooterView = UIView();
+        self.tableView.backgroundColor = UIColor(red: 1.0, green: 0.99, blue: 0.99, alpha: 1.0)
         print("folder of Realm,\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))");
 
-        // make navBar title clickable to choose list
-        navBarBtn.frame = CGRect(x: 0, y: 0, width: 100, height: 35)
-        navBarBtn.setTitle(self.currentListName, for: .normal);
-        navBarBtn.titleLabel?.font =  UIFont(name: "System Font Regular", size: 30);
-        navBarBtn.addTarget(self, action: #selector(clickOnButton), for: .touchUpInside)
-        navigationItem.titleView = navBarBtn
-        
         
 //       if let temp = defaults.array(forKey: "tempArray") as? [arrayItem] {tempArray = temp;}
     }
@@ -127,9 +122,29 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         }
         }
    
+    func createPicker(){
+        self.listPicker.frame = CGRect(
+                                x: 0, y: fullScreenSize.height * 0.7,
+                                width: fullScreenSize.width, height: fullScreenSize.height * 0.3);
+        self.listPicker.backgroundColor = UIColor(red: 0.88, green: 0.88, blue: 0.88, alpha: 1.0);
+        self.listPicker.isHidden = true;
+        self.view.addSubview(self.listPicker);
+    }
+    
+    func initNavBar(){
+        navBarBtn.frame = CGRect(x: 0, y: 0, width: 100, height: 35)
+        navBarBtn.setTitle(self.currentListName, for: .normal);
+        navBarBtn.titleLabel?.font =  UIFont(name: "System Font Regular", size: 23);
+        navBarBtn.addTarget(self, action: #selector(clickOnButton), for: .touchUpInside)
+        navigationItem.titleView = navBarBtn
+    }
+    
     //choose list
+    
+    
     @objc func clickOnButton() {
         self.listPicker.isHidden = !self.listPicker.isHidden;
+        self.blur_bg.isHidden = false;
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
