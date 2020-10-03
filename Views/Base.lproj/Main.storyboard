@@ -156,11 +156,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view hidden="YES" alpha="0.20000000000000001" contentMode="scaleToFill" id="Bj9-Nm-zm6">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zAe-zx-Fm4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -188,7 +183,6 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="blur_bg" destination="Bj9-Nm-zm6" id="a7t-gp-zSy"/>
                         <outlet property="tableView" destination="Rsk-sT-ZBn" id="spw-hw-SUu"/>
                     </connections>
                 </viewController>

@@ -7,8 +7,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var blur_bg: UIView!
-    //    @IBOutlet weak var listPicker: ListPickerView!
     
     let fullScreenSize = UIScreen.main.bounds.size;
     let listPicker: UIPickerView = UIPickerView();
@@ -20,6 +18,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     var selected_items : Results<Item_>!;
     var lists: Results<todoList>!;
     var currentListName = "defaultList";
+    var selectedListIndex = 0;
 
     
     override func viewDidLoad() {
@@ -27,10 +26,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-        self.listPicker.delegate = self;
-        self.listPicker.dataSource = self;
 
-        createPicker();
         initNavBar(); // make navBar title clickable to choose list
         
         lists = realm.objects(todoList.self); //all todoList instances in Realm
@@ -121,15 +117,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             self.tableView.reloadData();
         }
         }
-   
-    func createPicker(){
-        self.listPicker.frame = CGRect(
-                                x: 0, y: fullScreenSize.height * 0.7,
-                                width: fullScreenSize.width, height: fullScreenSize.height * 0.3);
-        self.listPicker.backgroundColor = UIColor(red: 0.88, green: 0.88, blue: 0.88, alpha: 1.0);
-        self.listPicker.isHidden = true;
-        self.view.addSubview(self.listPicker);
-    }
+
     
     func initNavBar(){
         navBarBtn.frame = CGRect(x: 0, y: 0, width: 100, height: 35)
@@ -139,12 +127,27 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         navigationItem.titleView = navBarBtn
     }
     
+    func popupListPicker(){
+        listPicker.delegate = self;
+        listPicker.dataSource = self;
+        
+        let alert = UIAlertController(title: NSLocalizedString("addNewFolder", comment: ""), message: "\n\n\n\n\n\n\n", preferredStyle: UIAlertController.Style.actionSheet);
+        listPicker.frame = CGRect(x: 5, y: 30,  width:fullScreenSize.width*0.9, height: fullScreenSize.height * 0.3);
+        
+        alert.view.addSubview(listPicker);
+        alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: NSLocalizedString("confirm", comment: ""), style: .default, handler: { (UIAlertAction) in
+                self.currentListName = self.lists[self.selectedListIndex].title;
+                self.loadListItems();
+                self.tableView.reloadData();
+                self.navBarBtn.setTitle(self.currentListName, for: .normal);
+                }))
+                self.present(alert,animated: true, completion: nil )
+    }
+    
     //choose list
-    
-    
     @objc func clickOnButton() {
-        self.listPicker.isHidden = !self.listPicker.isHidden;
-        self.blur_bg.isHidden = false;
+        self.popupListPicker();
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -156,11 +159,12 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        self.lists[row].title
+        self.lists[row].title;
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(self.lists[row].title)
+        print(self.lists[row].title);
+        selectedListIndex = row;
     }
     
     // add new folder
