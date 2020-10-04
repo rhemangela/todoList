@@ -4,6 +4,8 @@
 "enterNewListName" = "请轮入清单名字";
 "confirm" = "确定";
 "cancel" = "取消";
+"delete" = "删除";
 "deleteListMsg" = "确定要删除所在清单？";
 "deleteListMsgDetail" = "此清单内的所有资料也会一併删除";
+"markAsImportant" ="标志为重要";
 "setting" = "设定";

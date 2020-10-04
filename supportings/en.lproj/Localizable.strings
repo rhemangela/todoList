@@ -4,6 +4,8 @@
 "enterNewListName" = "Please enter a name";
 "confirm" = "Confirm";
 "cancel" = "Cancel";
+"delete" = "Delete";
 "deleteListMsg" = "Are you sure delete the current List?";
 "deleteListMsgDetail" = "All items inside this list will also be deleted";
+"markAsImportant" ="mark as Important";
 "setting" = "Setting";
