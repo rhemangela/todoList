@@ -12,12 +12,12 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     let listPicker: UIPickerView = UIPickerView();
     let navBarBtn =  UIButton(type: .custom);
 
-    //    let defaults = UserDefaults.standard;
+    let defaults = UserDefaults.standard;
     let realm = try! Realm();
     var all_items: Results<Item_>!;
     var selected_items : Results<Item_>!;
     var lists: Results<todoList>!;
-    var currentListName = "defaultList";
+    var currentListName = "";
     var selectedListIndex = 0;
 
     
@@ -30,12 +30,12 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         lists = realm.objects(todoList.self); //all todoList instances in Realm
         all_items = realm.objects(Item_.self);// all item instances in Realm
 
+        currentListName = defaults.string(forKey: "lastOpenList") ?? "New List";
+        
         if (lists.isEmpty){
             createNewList(name: currentListName)
-        }
-
-        if !(lists.isEmpty){
-            currentListName = lists[lists.count-1].title;
+        } else {
+//            currentListName = lists[lists.count-1].title;
             self.loadListItems();
         }
         
@@ -219,8 +219,8 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
                 try! self.realm.write {
                     self.realm.deleteAll()
                 }
-                self.currentListName = "defaultList";
-                self.createNewList(name: "defaultList")
+                self.currentListName = "New List";
+                self.createNewList(name: "New List")
             }
             self.loadListItems();
             self.tableView.reloadData();
@@ -240,6 +240,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func loadListItems(){
         self.selected_items = self.all_items.filter("ownerList = '\(currentListName)'");
+        defaults.set(currentListName, forKey: "lastOpenList");
     }
     
     func saveItem(newItemText:String){
