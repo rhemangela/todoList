@@ -131,15 +131,17 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     func popupListPicker(){
         listPicker.delegate = self;
         listPicker.dataSource = self;
+        listPicker.translatesAutoresizingMaskIntoConstraints = false;
         
         let alert = UIAlertController(title: NSLocalizedString("switchFolder", comment: ""), message: "\n\n\n\n\n\n\n", preferredStyle: UIAlertController.Style.actionSheet);
         
-        let width = alert.view.frame.width;
-        let height = alert.view.frame.height;
-        
-        listPicker.frame = CGRect(x: 0, y: 0,  width:width, height: height * 0.2);
-        
         alert.view.addSubview(listPicker);
+        
+        let constraintX = NSLayoutConstraint(item: listPicker, attribute: .centerX, relatedBy: .equal, toItem: alert.view, attribute: .centerX, multiplier: 1, constant: 0);
+        let constraintTop = NSLayoutConstraint(item: listPicker, attribute: .top, relatedBy: .equal, toItem: alert.view, attribute: .top, multiplier: 1, constant: 0);
+        NSLayoutConstraint.activate([constraintX, constraintTop]);
+        alert.view.layoutIfNeeded();
+        
         alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil))
                 alert.addAction(UIAlertAction(title: NSLocalizedString("confirm", comment: ""), style: .default, handler: { (UIAlertAction) in
                 self.currentListName = self.lists[self.selectedListIndex].title;
