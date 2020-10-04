@@ -1,5 +1,6 @@
 "addNewItem" = "+ ...新增项目";
 "addNewFolder" = "建立新清单";
+"switchFolder" = "跳到清单...";
 "enterNewListName" = "请轮入清单名字";
 "confirm" = "确定";
 "cancel" = "取消";

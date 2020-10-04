@@ -1,5 +1,6 @@
 "addNewItem" = "+ ...新增項目";
 "addNewFolder" = "建立新清單";
+"switchFolder" = "跳到清單...";
 "enterNewListName" = "請輪入清單名字";
 "confirm" = "確定";
 "cancel" = "取消";

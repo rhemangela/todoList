@@ -26,19 +26,20 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-
-        initNavBar(); // make navBar title clickable to choose list
         
         lists = realm.objects(todoList.self); //all todoList instances in Realm
         all_items = realm.objects(Item_.self);// all item instances in Realm
 
         if (lists.isEmpty){
-            createNewList(name: "defaultList")
+            createNewList(name: currentListName)
         }
 
         if !(lists.isEmpty){
+            currentListName = lists[lists.count-1].title;
             self.loadListItems();
         }
+        
+        initNavBar(); // make navBar title clickable to choose list
         
         self.tableView.reloadData();
         self.tableView.tableFooterView = UIView();
@@ -120,7 +121,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
 
     
     func initNavBar(){
-        navBarBtn.frame = CGRect(x: 0, y: 0, width: 100, height: 35)
+        navBarBtn.frame = CGRect(x: 0, y: 0, width: 300, height: 35)
         navBarBtn.setTitle(self.currentListName, for: .normal);
         navBarBtn.titleLabel?.font =  UIFont(name: "System Font Regular", size: 23);
         navBarBtn.addTarget(self, action: #selector(clickOnButton), for: .touchUpInside)
@@ -131,8 +132,12 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         listPicker.delegate = self;
         listPicker.dataSource = self;
         
-        let alert = UIAlertController(title: NSLocalizedString("addNewFolder", comment: ""), message: "\n\n\n\n\n\n\n", preferredStyle: UIAlertController.Style.actionSheet);
-        listPicker.frame = CGRect(x: 5, y: 30,  width:fullScreenSize.width*0.9, height: fullScreenSize.height * 0.3);
+        let alert = UIAlertController(title: NSLocalizedString("switchFolder", comment: ""), message: "\n\n\n\n\n\n\n", preferredStyle: UIAlertController.Style.actionSheet);
+        
+        let width = alert.view.frame.width;
+        let height = alert.view.frame.height;
+        
+        listPicker.frame = CGRect(x: 0, y: 0,  width:width, height: height * 0.2);
         
         alert.view.addSubview(listPicker);
         alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil))

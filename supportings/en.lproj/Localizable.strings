@@ -1,5 +1,6 @@
 "addNewItem" = "+ ...add new item";
 "addNewFolder" = "add a new List";
+"switchFolder" = "Switch to the list...";
 "enterNewListName" = "Please enter a name";
 "confirm" = "Confirm";
 "cancel" = "Cancel";
