@@ -1,5 +1,8 @@
 PODS:
+  - IGColorPicker (0.4.3):
+    - M13Checkbox
   - IQKeyboardManagerSwift (6.5.6)
+  - M13Checkbox (3.4.0)
   - Realm (5.3.6):
     - Realm/Headers (= 5.3.6)
   - Realm/Headers (5.3.6)
@@ -7,20 +10,25 @@ PODS:
     - Realm (= 5.3.6)
 
 DEPENDENCIES:
+  - IGColorPicker
   - IQKeyboardManagerSwift
   - RealmSwift
 
 SPEC REPOS:
   trunk:
+    - IGColorPicker
     - IQKeyboardManagerSwift
+    - M13Checkbox
     - Realm
     - RealmSwift
 
 SPEC CHECKSUMS:
+  IGColorPicker: f6034f8629aa90cce308a76ecc0fdf2afed0bf34
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
   Realm: cd400dd7e5b5bb5c8ae9842eecd73792369e6ec0
   RealmSwift: 99a16dbdee5d6dfb3d91d56088a9f8c15c0871d1
 
-PODFILE CHECKSUM: d6dff25ff4aea4e55a98b50da30619746c1f838d
+PODFILE CHECKSUM: 632c024663e1fa96d3732bb45ce8497cc2c79ae1
 
 COCOAPODS: 1.9.3

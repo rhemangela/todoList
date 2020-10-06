@@ -18,11 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="reuseIdentifier" id="fI2-9h-zVe">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="reuseIdentifier" id="fI2-9h-zVe">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fI2-9h-zVe" id="ZgX-H3-6Rc">
-                                    <rect key="frame" x="0.0" y="0.0" width="351" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -33,15 +33,47 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="S3b-TZ-7mH"/>
+                    <connections>
+                        <segue destination="jEe-j9-saT" kind="show" identifier="showColorPicker" id="sIF-7M-MSe"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rov-xa-4SN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4219" y="404"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Color Picker View Controller-->
+        <scene sceneID="C7Z-XB-DIZ">
+            <objects>
+                <viewController id="jEe-j9-saT" customClass="ColorPickerViewController" customModule="todoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dE1-Da-upI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a theme color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P9Y-FF-jak">
+                                <rect key="frame" x="10" y="138" width="394" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="liI-4I-9lQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="liI-4I-9lQ" firstAttribute="trailing" secondItem="P9Y-FF-jak" secondAttribute="trailing" constant="10" id="Sbk-2B-dyW"/>
+                            <constraint firstItem="P9Y-FF-jak" firstAttribute="leading" secondItem="liI-4I-9lQ" secondAttribute="leading" constant="10" id="ba3-o5-MeD"/>
+                            <constraint firstItem="P9Y-FF-jak" firstAttribute="top" secondItem="liI-4I-9lQ" secondAttribute="top" constant="50" id="lpd-60-YGy"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="vgs-lL-Nxe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wna-rV-aFW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5042" y="404"/>
+        </scene>
+        <!--Custom Nav View Controller-->
         <scene sceneID="bff-Ia-yfq">
             <objects>
-                <navigationController id="tPS-FS-CXx" sceneMemberID="viewController">
+                <navigationController id="tPS-FS-CXx" customClass="CustomNavViewController" customModule="todoList" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="1" title="" image="gearshape.fill" catalog="system" id="3Yy-PV-D4s"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GPl-J2-sfq">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -59,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="3445" y="405"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Custom Nav View Controller-->
         <scene sceneID="5vL-04-G15">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mkz-Wc-CsG" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mkz-Wc-CsG" customClass="CustomNavViewController" customModule="todoList" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="list.bullet" catalog="system" id="SbJ-zr-qZh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HC8-BH-whd">

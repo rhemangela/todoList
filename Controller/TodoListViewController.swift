@@ -139,13 +139,13 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
            delete.backgroundColor =  UIColor(red: 0.83, green: 0.43, blue: 0.5, alpha: 1.0)
         
         let important = UIContextualAction(style: .normal, title: NSLocalizedString("markAsImportant", comment: "")) { (action, view, completion) in
-            do { try self.realm.write {
-                self.selected_items[indexPath.row].isImportant = !self.selected_items[indexPath.row].isImportant;
-                }
-            }
-            catch {print("did select row errer,\(error)")}
-            self.tableView.reloadData();
-                
+//            do { try self.realm.write {
+//                self.selected_items[indexPath.row].isImportant = !self.selected_items[indexPath.row].isImportant;
+//                }
+//            }
+//            catch {print("did select row errer,\(error)")};
+//            self.tableView.reloadData();
+            
             completion(true)
         }
         important.backgroundColor =  UIColor(red: 0.98, green: 0.72, blue: 0.42, alpha: 1.0)

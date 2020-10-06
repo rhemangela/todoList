@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0B2891DA25090F11004DEF0C /* AddNewItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2891D925090F11004DEF0C /* AddNewItemTableViewCell.swift */; };
+		0B46BCC2252C885B00BDA181 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46BCC1252C885B00BDA181 /* ColorPickerViewController.swift */; };
+		0B46BCC6252C980D00BDA181 /* CustomNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46BCC5252C980D00BDA181 /* CustomNavViewController.swift */; };
 		0B53E7DF250D233600147975 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B53E7DE250D233600147975 /* NavBar.swift */; };
 		0B708E492504FE2600EC0DA0 /* listData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B708E472504FE2600EC0DA0 /* listData.xcdatamodeld */; };
 		0B7ABB91251B626500413652 /* ListPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7ABB90251B626500413652 /* ListPickerView.swift */; };
@@ -28,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		0B2891D925090F11004DEF0C /* AddNewItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		0B46BCC1252C885B00BDA181 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		0B46BCC5252C980D00BDA181 /* CustomNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavViewController.swift; sourceTree = "<group>"; };
 		0B53E7DE250D233600147975 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavBar.swift; path = Controller/NavBar.swift; sourceTree = SOURCE_ROOT; };
 		0B708E482504FE2600EC0DA0 /* listData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = listData.xcdatamodel; sourceTree = "<group>"; };
 		0B7ABB90251B626500413652 /* ListPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPickerView.swift; sourceTree = "<group>"; };
@@ -81,8 +85,10 @@
 		0B708E4B2504FFF100EC0DA0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0B46BCC1252C885B00BDA181 /* ColorPickerViewController.swift */,
 				0B962CC32503B9C4006C4D2F /* SettingTableViewController.swift */,
 				0BBC700E24CDB716004D6157 /* TodoListViewController.swift */,
+				0B46BCC5252C980D00BDA181 /* CustomNavViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -277,6 +283,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B46BCC2252C885B00BDA181 /* ColorPickerViewController.swift in Sources */,
+				0B46BCC6252C980D00BDA181 /* CustomNavViewController.swift in Sources */,
 				0BD0ED152507964300C67CD0 /* Item_.swift in Sources */,
 				0B708E492504FE2600EC0DA0 /* listData.xcdatamodeld in Sources */,
 				0BA1458F251665EE00C46CF7 /* CustomTabBar.swift in Sources */,

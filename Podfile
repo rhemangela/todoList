@@ -5,4 +5,5 @@ use_frameworks!
   # Pods for todoList
 pod 'RealmSwift'
 pod 'IQKeyboardManagerSwift'
+pod 'IGColorPicker'
 end
