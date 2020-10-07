@@ -15,7 +15,7 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enable = true;
         print("the folder of Realm,\(Realm.Configuration.defaultConfiguration.fileURL)");
 
         return true

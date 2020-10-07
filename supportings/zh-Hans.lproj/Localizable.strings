@@ -8,4 +8,7 @@
 "deleteListMsg" = "确定要删除所在清单？";
 "deleteListMsgDetail" = "此清单内的所有资料也会一併删除";
 "markAsImportant" ="标志为重要";
+"selectColor" = "选择颜色";
+"aboutMe" = "关于我";
+"selectColorMsg" = "请选择主题颜色";
 "setting" = "设定";

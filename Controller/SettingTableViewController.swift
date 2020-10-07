@@ -2,7 +2,7 @@ import UIKit
 
 class SettingTableViewController: UITableViewController {
     
-    let content = ["changeThemeColor", "aboutThisApp"];
+    let content = ["selectColor", "aboutMe"];
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +22,7 @@ class SettingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath);
         cell.textLabel?.font = UIFont(name:"System Font Regular", size:23);
-        cell.textLabel?.text = self.content[indexPath.row];
-
+        cell.textLabel?.text = NSLocalizedString(self.content[indexPath.row], comment: "") ;
         return cell
     }
     
