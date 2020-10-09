@@ -15,7 +15,6 @@ class ColorPickerViewController: UIViewController, ColorPickerViewDelegateFlowLa
         super.viewDidLoad();
         
         selectColorLabel.text = NSLocalizedString("selectColorMsg", comment: "");
-        let frameSize = self.view.frame.size;
         colorPickerView = ColorPickerView(frame: CGRect(x: 30, y: 300, width: 300, height: 250));
         let separatorView = UIView.init(frame: CGRect(x: 30, y: 280, width: 300, height: 1))
         separatorView.backgroundColor = .lightGray;
@@ -32,8 +31,8 @@ class ColorPickerViewController: UIViewController, ColorPickerViewDelegateFlowLa
         
         let constraintX_separator = NSLayoutConstraint(item: separatorView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0);
         let constraintTop_separator = NSLayoutConstraint(item: separatorView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 150);
-        let constraintX = NSLayoutConstraint(item: colorPickerView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0);
-        let constraintTop = NSLayoutConstraint(item: colorPickerView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 150);
+        let constraintX = NSLayoutConstraint(item: colorPickerView as Any, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0);
+        let constraintTop = NSLayoutConstraint(item: colorPickerView as Any, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 150);
         
         NSLayoutConstraint.activate([constraintX_separator, constraintTop_separator, constraintX, constraintTop]);
         view.layoutIfNeeded();
