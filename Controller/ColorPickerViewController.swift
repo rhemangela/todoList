@@ -1,15 +1,10 @@
 import UIKit
 import IGColorPicker
 
-protocol changeNavBarColorDelegate {
-    func changeNavBarColor(color:UIColor);
-}
-
 class ColorPickerViewController: UIViewController, ColorPickerViewDelegateFlowLayout,ColorPickerViewDelegate {
 
     @IBOutlet weak var selectColorLabel: UILabel!
     var colorPickerView: ColorPickerView!
-    var delegate: changeNavBarColorDelegate?
     
       override func viewDidLoad() {
         super.viewDidLoad();
@@ -56,8 +51,10 @@ class ColorPickerViewController: UIViewController, ColorPickerViewDelegateFlowLa
     }
     
     func colorPickerView(_ colorPickerView: ColorPickerView, didSelectItemAt indexPath: IndexPath) {
-        self.delegate?.changeNavBarColor(color: colorPickerView.colors[indexPath.row]);
-        self.navigationController?.navigationBar.barTintColor = colorPickerView.colors[indexPath.row]
+        
+        UINavigationBar.appearance().barTintColor = colorPickerView.colors[indexPath.row];
+
+        self.navigationController?.navigationBar.barTintColor = colorPickerView.colors[indexPath.row];
     }
 }
 

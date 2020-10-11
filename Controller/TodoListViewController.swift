@@ -157,7 +157,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
            return config
        }
     
-    
     func initNavBar(){
         navBarBtn.frame = CGRect(x: 0, y: 0, width: 300, height: 35)
         navBarBtn.setTitle(self.currentListName, for: .normal);
