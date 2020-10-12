@@ -3,34 +3,16 @@ import IGColorPicker
 
 class ColorPickerViewController: UIViewController, ColorPickerViewDelegateFlowLayout,ColorPickerViewDelegate {
 
+    @IBOutlet weak var colorPickerView: ColorPickerView!
     @IBOutlet weak var selectColorLabel: UILabel!
-    var colorPickerView: ColorPickerView!
     
       override func viewDidLoad() {
         super.viewDidLoad();
         
-        selectColorLabel.text = NSLocalizedString("selectColorMsg", comment: "");
-        colorPickerView = ColorPickerView(frame: CGRect(x: 30, y: 300, width: 300, height: 250));
-        let separatorView = UIView.init(frame: CGRect(x: 30, y: 280, width: 300, height: 1))
-        separatorView.backgroundColor = .lightGray;
-        
-//        colorPickerView.translatesAutoresizingMaskIntoConstraints = false;
-//        separatorView.translatesAutoresizingMaskIntoConstraints = false;
-
-        
-        view.addSubview(colorPickerView);
-        view.addSubview(separatorView);
-        
         colorPickerView.layoutDelegate = self;
         colorPickerView.delegate = self;
         
-        let constraintX_separator = NSLayoutConstraint(item: separatorView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0);
-        let constraintTop_separator = NSLayoutConstraint(item: separatorView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 150);
-        let constraintX = NSLayoutConstraint(item: colorPickerView as Any, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0);
-        let constraintTop = NSLayoutConstraint(item: colorPickerView as Any, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 150);
-        
-        NSLayoutConstraint.activate([constraintX_separator, constraintTop_separator, constraintX, constraintTop]);
-        view.layoutIfNeeded();
+        selectColorLabel.text = NSLocalizedString("selectColorMsg", comment: "");
       }
     
     func colorPickerView(_ colorPickerView: ColorPickerView, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -53,7 +35,7 @@ class ColorPickerViewController: UIViewController, ColorPickerViewDelegateFlowLa
     func colorPickerView(_ colorPickerView: ColorPickerView, didSelectItemAt indexPath: IndexPath) {
         
         UINavigationBar.appearance().barTintColor = colorPickerView.colors[indexPath.row];
-
+        UITabBar.appearance().tintColor = colorPickerView.colors[indexPath.row];
         self.navigationController?.navigationBar.barTintColor = colorPickerView.colors[indexPath.row];
     }
 }

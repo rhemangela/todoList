@@ -5,7 +5,6 @@ import IQKeyboardManagerSwift
 
 class TodoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDelegate,UIPickerViewDataSource,  CustomCellDelegate, TodoCellDelegate {
     
-    @IBOutlet var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     
     let fullScreenSize = UIScreen.main.bounds.size;
@@ -41,10 +40,11 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         initNavBar(); // make navBar title clickable to choose list
-        
+        self.title = NSLocalizedString("list", comment: "");
+        //tabbar item name
         self.tableView.reloadData();
         self.tableView.tableFooterView = UIView();
-        self.tableView.backgroundColor = UIColor(red: 1.0, green: 0.99, blue: 0.99, alpha: 1.0)
+        self.tableView.backgroundColor = UIColor(red: 1.0, green: 0.99, blue: 0.99, alpha: 1.0);
         print("folder of Realm,\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))");
 
         important_img.frame = CGRect(x: 0, y: 0, width: 20, height: 20);
@@ -262,7 +262,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             self.loadListItems();
             self.tableView.reloadData();
             self.listPicker.reloadAllComponents();
-            self.title = self.currentListName;
             self.navBarBtn.setTitle(self.currentListName, for: .normal);
         };
         let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)

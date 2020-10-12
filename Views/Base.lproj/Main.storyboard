@@ -55,6 +55,11 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="teO-Wh-FW5" customClass="ColorPickerView" customModule="IGColorPicker">
+                                <rect key="frame" x="55.29506409511032" y="323.40224115438741" width="300.00000000000091" height="249.99999999999966"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="liI-4I-9lQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -67,18 +72,19 @@
                     </view>
                     <navigationItem key="navigationItem" id="vgs-lL-Nxe"/>
                     <connections>
+                        <outlet property="colorPickerView" destination="teO-Wh-FW5" id="zuU-ZJ-1Sc"/>
                         <outlet property="selectColorLabel" destination="P9Y-FF-jak" id="9Zo-zZ-x5x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wna-rV-aFW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5042" y="404"/>
+            <point key="canvasLocation" x="5040.579710144928" y="403.79464285714283"/>
         </scene>
-        <!--Custom Nav View Controller-->
+        <!--Setting-->
         <scene sceneID="bff-Ia-yfq">
             <objects>
-                <navigationController id="tPS-FS-CXx" customClass="CustomNavViewController" customModule="todoList" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="" image="gearshape.fill" catalog="system" id="3Yy-PV-D4s"/>
+                <navigationController id="tPS-FS-CXx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="1" title="Setting" image="gear" catalog="system" id="3Yy-PV-D4s"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GPl-J2-sfq">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -95,11 +101,11 @@
             </objects>
             <point key="canvasLocation" x="3445" y="405"/>
         </scene>
-        <!--Custom Nav View Controller-->
+        <!--Todo List-->
         <scene sceneID="5vL-04-G15">
             <objects>
-                <navigationController storyboardIdentifier="customNavBar01" automaticallyAdjustsScrollViewInsets="NO" id="mkz-Wc-CsG" customClass="CustomNavViewController" customModule="todoList" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="list.bullet" catalog="system" id="SbJ-zr-qZh"/>
+                <navigationController storyboardIdentifier="customNavBar01" automaticallyAdjustsScrollViewInsets="NO" id="mkz-Wc-CsG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Todo List" image="list.bullet" catalog="system" id="SbJ-zr-qZh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HC8-BH-whd">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -138,11 +144,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square-regular" translatesAutoresizingMaskIntoConstraints="NO" id="BVs-aJ-VX4">
-                                                    <rect key="frame" x="15.000000000000909" y="3.9129976170493137" width="29.999999999999545" height="64.999999999999773"/>
+                                                    <rect key="frame" x="15.000000000000909" y="1.4654106924963344" width="29.999999999999091" height="64.999999999999886"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" text="Hello World!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNl-b7-tHP">
-                                                    <rect key="frame" x="75" y="6.7519461624415271" width="299.99999999999955" height="60.000000000000114"/>
+                                                    <rect key="frame" x="75" y="4.2102953948044615" width="299.99999999999955" height="60.000000000000114"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                     <nil key="textColor"/>
@@ -164,7 +170,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="square-regular" translatesAutoresizingMaskIntoConstraints="NO" id="pUc-Nh-IuE">
-                                                    <rect key="frame" x="15" y="3.0666441644916631" width="30" height="65"/>
+                                                    <rect key="frame" x="15" y="1.8637543255549645" width="30" height="64.999999999999886"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <textField opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="fill" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2dJ-4c-0Dk">
@@ -221,7 +227,7 @@
         <scene sceneID="3yt-KK-HbU">
             <objects>
                 <tabBarController id="H6B-g0-gsb" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="q1V-ga-Npj" customClass="CustomTabBar" customModule="todoList" customModuleProvider="target">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="q1V-ga-Npj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -238,7 +244,7 @@
     </scenes>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
-        <image name="gearshape.fill" catalog="system" width="128" height="121"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="square-regular" width="100" height="100"/>
         <systemColor name="systemBackgroundColor">
