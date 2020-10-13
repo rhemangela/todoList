@@ -6,6 +6,7 @@ protocol TodoCellDelegate{
 
 class TodoListTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var _tickBox: UIImageView!
+    @IBOutlet weak var _heart: UIImageView!
     @IBOutlet weak var _todoLabel: UILabel!
     var delegate: TodoCellDelegate?
 

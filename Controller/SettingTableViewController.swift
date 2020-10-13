@@ -22,7 +22,8 @@ class SettingTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath);
-        cell.textLabel?.font = UIFont(name:"System Font Regular", size:23);
+        cell.textLabel?.font = UIFont(name:"System Font Regular", size:20);
+        cell.textLabel?.textColor = UIColor(red: 0.11, green: 0.11, blue: 0.12, alpha: 1.0);
         cell.textLabel?.text = NSLocalizedString(self.content[indexPath.row], comment: "") ;
         return cell
     }

@@ -13,7 +13,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
 
     let defaults = UserDefaults.standard;
     let realm = try! Realm();
-    let important_img = UIImageView();
     var all_items: Results<Item_>!;
     var selected_items : Results<Item_>!;
     var lists: Results<todoList>!;
@@ -46,9 +45,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.tableFooterView = UIView();
         self.tableView.backgroundColor = UIColor(red: 1.0, green: 0.99, blue: 0.99, alpha: 1.0);
         print("folder of Realm,\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))");
-
-        important_img.frame = CGRect(x: 0, y: 0, width: 20, height: 20);
-        important_img.image = UIImage(named:"heart-solid.jpg");
         
         
 //       if let temp = defaults.array(forKey: "tempArray") as? [arrayItem] {tempArray = temp;}
@@ -65,7 +61,8 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             cell.delegate = self;
             cell._todoLabel?.text = self.selected_items[indexPath.row].issue;
             cell._tickBox.image = selected_items[indexPath.row].isDone ? UIImage(named: "check-square-gray.png") : UIImage(named: "square-regular.png");
-            cell.accessoryView = selected_items[indexPath.row].isImportant ? important_img : .none;
+            cell._heart.image = selected_items[indexPath.row].isImportant ? UIImage(named: "heart_regular.png") : UIImage(named: "heart_solid.png");
+
             cell._todoLabel.textColor =  selected_items[indexPath.row].isDone ? UIColor(red: 0.672, green: 0.675, blue: 0.706, alpha: 1.0) : UIColor.black;
             return cell;
         }
@@ -112,18 +109,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    //swipe to delete cell
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            do { try self.realm.write {
-//                self.realm.delete(self.selected_items[indexPath.row])
-//                }}
-//            catch { print("delete row error,\(error)")};
-//            self.tableView.deleteRows(at: [indexPath], with: .none);
-//            self.tableView.reloadData();
-//        }
-//        }
-    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
            let delete = UIContextualAction(style: .normal, title: NSLocalizedString("delete", comment: "")) { (action, view, completion) in
@@ -139,12 +124,14 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
            delete.backgroundColor =  UIColor(red: 0.83, green: 0.43, blue: 0.5, alpha: 1.0)
         
         let important = UIContextualAction(style: .normal, title: NSLocalizedString("markAsImportant", comment: "")) { (action, view, completion) in
-//            do { try self.realm.write {
-//                self.selected_items[indexPath.row].isImportant = !self.selected_items[indexPath.row].isImportant;
-//                }
-//            }
-//            catch {print("did select row errer,\(error)")};
-//            self.tableView.reloadData();
+            
+            do { try self.realm.write {
+                self.selected_items[indexPath.row].isImportant = !self.selected_items[indexPath.row].isImportant;
+                }
+            }
+            catch {print("did select row errer,\(error)")};
+            print(self.selected_items[indexPath.row].isImportant);
+            self.tableView.reloadData();
             
             completion(true)
         }
