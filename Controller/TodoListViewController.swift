@@ -61,8 +61,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             cell.delegate = self;
             cell._todoLabel?.text = self.selected_items[indexPath.row].issue;
             cell._tickBox.image = selected_items[indexPath.row].isDone ? UIImage(named: "check-square-gray.png") : UIImage(named: "square-regular.png");
-//            cell._heart.image = selected_items[indexPath.row].isImportant ? UIImage(named: "heart_regular.png") : UIImage(named: "heart_solid.png");
-
+            cell._heart.image = selected_items[indexPath.row].isImportant ? UIImage(named: "heart-solid.png") : .none;
             cell._todoLabel.textColor =  selected_items[indexPath.row].isDone ? UIColor(red: 0.672, green: 0.675, blue: 0.706, alpha: 1.0) : UIColor.black;
             return cell;
         }
