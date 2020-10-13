@@ -9,6 +9,7 @@
 "deleteListMsg" = "Are you sure delete the current List?";
 "deleteListMsgDetail" = "All items inside this list will also be deleted";
 "markAsImportant" ="mark as Important";
+"cancelMarker" ="cancel marker";
 "selectColor" = "Select Color";
 "aboutMe" = "About Me";
 "selectColorMsg" = "Please select a theme color";

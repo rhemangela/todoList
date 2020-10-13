@@ -9,6 +9,7 @@
 "deleteListMsg" = "確定要刪除所在清單？";
 "deleteListMsgDetail" = "此清單內的所有資料也會一併刪除";
 "markAsImportant" ="標誌為重要";
+"cancelMarker" ="取消標誌";
 "selectColor" = "選擇顏色";
 "aboutMe" = "關於我";
 "selectColorMsg" = "請選擇主題顏色";
