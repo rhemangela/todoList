@@ -26,6 +26,10 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         
+        tableView.tableFooterView = UIView();
+        self.tableView.backgroundColor = UIColor(red: 0.99, green: 0.98, blue: 0.91, alpha: 0.1);       self.view.backgroundColor = UIColor(patternImage: UIImage(named: "list_bg")!);
+        self.view.contentMode = UIView.ContentMode.scaleAspectFill;
+        
         lists = realm.objects(todoList.self); //all todoList instances in Realm
         all_items = realm.objects(Item_.self);// all item instances in Realm
 
@@ -42,12 +46,13 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.title = NSLocalizedString("list", comment: "");
         //tabbar item name
         self.tableView.reloadData();
-        self.tableView.tableFooterView = UIView();
-        self.tableView.backgroundColor = UIColor(red: 1.0, green: 0.99, blue: 0.99, alpha: 1.0);
         print("folder of Realm,\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))");
         
         
 //       if let temp = defaults.array(forKey: "tempArray") as? [arrayItem] {tempArray = temp;}
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = .clear
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
