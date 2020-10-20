@@ -27,7 +27,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.dataSource = self;
         
         tableView.tableFooterView = UIView();
-        self.tableView.backgroundColor = UIColor(red: 0.99, green: 0.98, blue: 0.91, alpha: 0.1);       self.view.backgroundColor = UIColor(patternImage: UIImage(named: "list_bg")!);
+        self.tableView.backgroundColor = UIColor(red: 0.99, green: 0.98, blue: 0.91, alpha: 0.1);       self.view.backgroundColor = UIColor(patternImage: UIImage(named: "list_bg04")!);
         self.view.contentMode = UIView.ContentMode.scaleAspectFill;
         
         lists = realm.objects(todoList.self); //all todoList instances in Realm
