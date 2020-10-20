@@ -27,8 +27,10 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.dataSource = self;
         
         tableView.tableFooterView = UIView();
-        self.tableView.backgroundColor = UIColor(red: 0.99, green: 0.98, blue: 0.91, alpha: 0.1);       self.view.backgroundColor = UIColor(patternImage: UIImage(named: "list_bg04")!);
-        self.view.contentMode = UIView.ContentMode.scaleAspectFill;
+        self.tableView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.99, alpha: 1.0);
+        self.view.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.99, alpha: 1.0);
+//        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "list_bg04")!);
+//        self.view.contentMode = UIView.ContentMode.scaleAspectFill;
         
         lists = realm.objects(todoList.self); //all todoList instances in Realm
         all_items = realm.objects(Item_.self);// all item instances in Realm
@@ -65,7 +67,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TodoListTableViewCell;
             cell.delegate = self;
             cell._todoLabel?.text = self.selected_items[indexPath.row].issue;
-            cell._tickBox.image = selected_items[indexPath.row].isDone ? UIImage(named: "check-square-gray.png") : UIImage(named: "square-regular.png");
+            cell._tickBox.image = selected_items[indexPath.row].isDone ? UIImage(named: "selected_gray.png") : UIImage(named: "unselected.png");
             cell._heart.image = selected_items[indexPath.row].isImportant ? UIImage(named: "heart-solid.png") : .none;
             cell._todoLabel.textColor =  selected_items[indexPath.row].isDone ? UIColor(red: 0.672, green: 0.675, blue: 0.706, alpha: 1.0) : UIColor.black;
             return cell;
@@ -95,7 +97,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
             catch {print("did select row errer,\(error)")}
-            cell._tickBox.image = selected_items[indexPath.row].isDone ? UIImage(named: "check-square-regular.png") : UIImage(named: "square-regular.png");
+            cell._tickBox.image = selected_items[indexPath.row].isDone ? UIImage(named: "selected_gray.png") : UIImage(named: "unselected.png");
             self.tableView.reloadData();
         } else if (indexPath.row == self.selected_items.count){
             let cell = self.tableView.cellForRow(at: indexPath) as! AddNewItemTableViewCell;

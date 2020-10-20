@@ -85,15 +85,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BD0F6964-2A8D-419F-B64E-BE3A34EFCE62"
+            uuid = "0E0189FE-D82E-439C-8FD0-F4505062360C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Controller/TodoListViewController.swift"
+            filePath = "Controller/SettingTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
