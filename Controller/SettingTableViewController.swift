@@ -2,7 +2,7 @@ import UIKit
 
 class SettingTableViewController: UITableViewController {
     
-    let content = ["selectColor", "aboutMe"];
+    let content = ["selectColor"];
     
     override func viewDidLoad() {
         super.viewDidLoad()
