@@ -210,13 +210,17 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     let alert = UIAlertController(title: NSLocalizedString("addNewFolder", comment: ""), message: "", preferredStyle: UIAlertController.Style.alert);
     let confirmAction = UIAlertAction(title: NSLocalizedString("confirm", comment: ""), style: UIAlertAction.Style.default) { (UIAlertAction) in
         if let listName = inputField.text {
+            var isDuplicateName = false;
             if (!listName.trimmingCharacters(in: .whitespaces).isEmpty){
                 for item in self.lists {
                     if (item.title == listName){
-                        break
+                        isDuplicateName = true;
                     }
                 }
-                self.createNewList(name: listName)}
+                if (!isDuplicateName) {
+                    self.createNewList(name: listName)
+                }
+            }
         }
     };
     let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)
