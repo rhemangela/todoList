@@ -18,6 +18,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     var lists: Results<todoList>!;
     var currentListName = "";
     var selectedListIndex = 0;
+    var darkMode = false;
 
     
     override func viewDidLoad() {
@@ -36,6 +37,8 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         all_items = realm.objects(Item_.self);// all item instances in Realm
 
         currentListName = defaults.string(forKey: "lastOpenList") ?? "New List";
+        darkMode = defaults.bool(forKey: "darkmode") ;
+        print(darkMode);
         
         if (lists.isEmpty){
             createNewList(name: currentListName)

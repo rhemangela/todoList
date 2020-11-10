@@ -2,7 +2,7 @@ import UIKit
 
 class SettingTableViewController: UITableViewController {
     
-    let content = ["selectColor"];
+    let content = ["selectColor", "darkMode"];
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,9 @@ class SettingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.row == 0){
             performSegue(withIdentifier: "showColorPicker", sender: nil)
+        }
+        if (indexPath.row == 1){
+
         }
     }
 
