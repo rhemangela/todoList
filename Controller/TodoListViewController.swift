@@ -53,8 +53,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.reloadData();
         print("folder of Realm,\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))");
         
-        
-//       if let temp = defaults.array(forKey: "tempArray") as? [arrayItem] {tempArray = temp;}
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = .clear

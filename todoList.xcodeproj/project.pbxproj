@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0B2891DA25090F11004DEF0C /* AddNewItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2891D925090F11004DEF0C /* AddNewItemTableViewCell.swift */; };
+		0B3F0872255C34E4006F732C /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3F0870255C34E4006F732C /* SwitchTableViewCell.swift */; };
+		0B3F0873255C34E4006F732C /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3F0871255C34E4006F732C /* SwitchTableViewCell.xib */; };
 		0B46BCC2252C885B00BDA181 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46BCC1252C885B00BDA181 /* ColorPickerViewController.swift */; };
+		0B57B66F255D611100C0D200 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B57B66E255D611100C0D200 /* SettingViewController.swift */; };
+		0B57B673255D774C00C0D200 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B57B672255D774C00C0D200 /* SettingTableViewCell.swift */; };
 		0B708E492504FE2600EC0DA0 /* listData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B708E472504FE2600EC0DA0 /* listData.xcdatamodeld */; };
 		0B7ABB91251B626500413652 /* ListPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7ABB90251B626500413652 /* ListPickerView.swift */; };
-		0B962CC42503B9C4006C4D2F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B962CC32503B9C4006C4D2F /* SettingTableViewController.swift */; };
 		0B962CC62503F698006C4D2F /* TodoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B962CC52503F698006C4D2F /* TodoListTableViewCell.swift */; };
 		0BA9C1422507BF7900020AFE /* todoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA9C1412507BF7900020AFE /* todoList.swift */; };
 		0BBC700B24CDB716004D6157 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC700A24CDB716004D6157 /* AppDelegate.swift */; };
@@ -27,10 +30,13 @@
 
 /* Begin PBXFileReference section */
 		0B2891D925090F11004DEF0C /* AddNewItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		0B3F0870255C34E4006F732C /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwitchTableViewCell.swift; path = Pods/SwitchTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		0B3F0871255C34E4006F732C /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SwitchTableViewCell.xib; path = Pods/SwitchTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		0B46BCC1252C885B00BDA181 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		0B57B66E255D611100C0D200 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		0B57B672255D774C00C0D200 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		0B708E482504FE2600EC0DA0 /* listData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = listData.xcdatamodel; sourceTree = "<group>"; };
 		0B7ABB90251B626500413652 /* ListPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPickerView.swift; sourceTree = "<group>"; };
-		0B962CC32503B9C4006C4D2F /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		0B962CC52503F698006C4D2F /* TodoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListTableViewCell.swift; sourceTree = "<group>"; };
 		0BA9C1412507BF7900020AFE /* todoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoList.swift; sourceTree = "<group>"; };
 		0BBC700724CDB716004D6157 /* RemindMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemindMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,7 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				0B46BCC1252C885B00BDA181 /* ColorPickerViewController.swift */,
-				0B962CC32503B9C4006C4D2F /* SettingTableViewController.swift */,
+				0B57B66E255D611100C0D200 /* SettingViewController.swift */,
 				0BBC700E24CDB716004D6157 /* TodoListViewController.swift */,
 			);
 			path = Controller;
@@ -130,10 +136,13 @@
 		0BBC700924CDB716004D6157 /* todoList */ = {
 			isa = PBXGroup;
 			children = (
+				0B57B672255D774C00C0D200 /* SettingTableViewCell.swift */,
+				0B3F0870255C34E4006F732C /* SwitchTableViewCell.swift */,
+				0B3F0871255C34E4006F732C /* SwitchTableViewCell.xib */,
 				0B2891D925090F11004DEF0C /* AddNewItemTableViewCell.swift */,
+				0B962CC52503F698006C4D2F /* TodoListTableViewCell.swift */,
 				0BBC700A24CDB716004D6157 /* AppDelegate.swift */,
 				0BBC700C24CDB716004D6157 /* SceneDelegate.swift */,
-				0B962CC52503F698006C4D2F /* TodoListTableViewCell.swift */,
 				0B7ABB90251B626500413652 /* ListPickerView.swift */,
 			);
 			path = todoList;
@@ -219,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BBC701724CDB719004D6157 /* LaunchScreen.storyboard in Resources */,
+				0B3F0873255C34E4006F732C /* SwitchTableViewCell.xib in Resources */,
 				0BF8061B252452F900B51739 /* Localizable.strings in Resources */,
 				0BBC701424CDB719004D6157 /* Assets.xcassets in Resources */,
 				0BBC701224CDB716004D6157 /* Main.storyboard in Resources */,
@@ -276,13 +286,15 @@
 			files = (
 				0B46BCC2252C885B00BDA181 /* ColorPickerViewController.swift in Sources */,
 				0BD0ED152507964300C67CD0 /* Item_.swift in Sources */,
+				0B57B673255D774C00C0D200 /* SettingTableViewCell.swift in Sources */,
 				0B708E492504FE2600EC0DA0 /* listData.xcdatamodeld in Sources */,
+				0B57B66F255D611100C0D200 /* SettingViewController.swift in Sources */,
 				0BBC700F24CDB716004D6157 /* TodoListViewController.swift in Sources */,
 				0B7ABB91251B626500413652 /* ListPickerView.swift in Sources */,
+				0B3F0872255C34E4006F732C /* SwitchTableViewCell.swift in Sources */,
 				0BA9C1422507BF7900020AFE /* todoList.swift in Sources */,
 				0BBC700B24CDB716004D6157 /* AppDelegate.swift in Sources */,
 				0BBC700D24CDB716004D6157 /* SceneDelegate.swift in Sources */,
-				0B962CC42503B9C4006C4D2F /* SettingTableViewController.swift in Sources */,
 				0B2891DA25090F11004DEF0C /* AddNewItemTableViewCell.swift in Sources */,
 				0B962CC62503F698006C4D2F /* TodoListTableViewCell.swift in Sources */,
 			);

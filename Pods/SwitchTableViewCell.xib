@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="switchCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="switchCell" id="KGk-i7-Jjw" customClass="SwitchTableViewCell" customModule="RemindMe" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9uC-Ac-VKp">
+                        <rect key="frame" x="253" y="7" width="51" height="31"/>
+                        <connections>
+                            <action selector="onToggle:" destination="KGk-i7-Jjw" eventType="valueChanged" id="KFy-hi-uxF"/>
+                        </connections>
+                    </switch>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNM-le-ds9">
+                        <rect key="frame" x="10" y="0.0" width="213" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="0fI-Q5-6dP"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="9uC-Ac-VKp" firstAttribute="leading" secondItem="BNM-le-ds9" secondAttribute="trailing" constant="30" id="44j-uf-VFE"/>
+                    <constraint firstAttribute="bottom" secondItem="9uC-Ac-VKp" secondAttribute="bottom" constant="6" id="6n1-Uc-JTb"/>
+                    <constraint firstAttribute="trailing" secondItem="9uC-Ac-VKp" secondAttribute="trailing" constant="18" id="Shu-cg-Die"/>
+                    <constraint firstAttribute="bottom" secondItem="BNM-le-ds9" secondAttribute="bottom" id="UAb-2H-5Pr"/>
+                    <constraint firstItem="BNM-le-ds9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="XMD-h1-4I3"/>
+                    <constraint firstItem="BNM-le-ds9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Z1W-50-UCb"/>
+                    <constraint firstItem="9uC-Ac-VKp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="cGT-MM-hmd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="_label" destination="BNM-le-ds9" id="JZ1-D3-Afj"/>
+            </connections>
+            <point key="canvasLocation" x="34.782608695652179" y="91.741071428571431"/>
+        </tableViewCell>
+    </objects>
+</document>
