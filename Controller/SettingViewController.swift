@@ -12,6 +12,9 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
 
+        self.tableView.backgroundColor = UIColor(red: 0.25, green: 0.25, blue: 0.25, alpha: 1.0);//place to change background color
+        self.view.backgroundColor = UIColor(red: 0.25, green: 0.25, blue: 0.25, alpha: 1.0);//place to change background color
+        
         tableView.register(SwitchTableViewCell.nib(), forCellReuseIdentifier: "switchCell")
         
         self.title = NSLocalizedString("setting", comment: "");
@@ -48,6 +51,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 0:
             performSegue(withIdentifier: "showColorPicker", sender: nil)
         default:
+            
             return;
         }
     }

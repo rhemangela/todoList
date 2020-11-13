@@ -7,14 +7,18 @@ class SwitchTableViewCell: UITableViewCell {
     static func nib()-> UINib {
         return UINib(nibName: "SwitchTableViewCell", bundle: nil)
     }
-    override class func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    @IBAction func onToggle(_ sender: Any) {
-        print("hello world");
+
+    @IBAction func onToggle(_ sender: UISwitch) {
+
+        if sender.isOn == true {    // 判斷使用者選擇是開還是關
+            print("on");
+              }else {
+            print("off");
+              }
     }
     override func awakeFromNib() {
-        super.awakeFromNib()
+        super.awakeFromNib();
+        self.backgroundColor = UIColor.clear;
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
