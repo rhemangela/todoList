@@ -11,9 +11,6 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-
-        self.tableView.backgroundColor = UIColor(red: 0.25, green: 0.25, blue: 0.25, alpha: 1.0);//place to change background color
-        self.view.backgroundColor = UIColor(red: 0.25, green: 0.25, blue: 0.25, alpha: 1.0);//place to change background color
         
         tableView.register(SwitchTableViewCell.nib(), forCellReuseIdentifier: "switchCell")
         
@@ -34,12 +31,12 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         switch indexPath.row {
         case 1:
         let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath) as! SwitchTableViewCell;
-        cell._label?.textColor = UIColor(red: 0.11, green: 0.11, blue: 0.12, alpha: 1.0);
+        cell._label?.textColor = UIColor(named: "custom_text_color");
         cell._label?.text = NSLocalizedString(self.content[indexPath.row], comment: "") ;
         return cell
         default:
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath) as! SettingTableViewCell;
-        cell._label?.textColor = UIColor(red: 0.11, green: 0.11, blue: 0.12, alpha: 1.0);
+            cell._label?.textColor = UIColor(named: "custom_text_color");
         cell._label?.text = NSLocalizedString(self.content[indexPath.row], comment: "") ;
         return cell
         }

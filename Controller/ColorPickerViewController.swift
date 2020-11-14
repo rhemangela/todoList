@@ -12,8 +12,9 @@ class ColorPickerViewController: UIViewController, ColorPickerViewDelegateFlowLa
         colorPickerView.layoutDelegate = self;
         colorPickerView.delegate = self;
         
-        self.view.backgroundColor = UIColor(red: 0.25, green: 0.25, blue: 0.25, alpha: 1.0);//place to change background color
-        
+        // self.view.backgroundColor = UIColor(red: 0.18, green: 0.2, blue: 0.25, alpha: 1.0);
+        //place to change background color
+        selectColorLabel.textColor = UIColor(named: "custom_text_color");
         selectColorLabel.text = NSLocalizedString("selectColorMsg", comment: "");
       }
     

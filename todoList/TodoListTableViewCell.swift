@@ -14,6 +14,7 @@ class TodoListTableViewCell: UITableViewCell, UITextFieldDelegate {
     override func awakeFromNib() {
         self.backgroundColor = UIColor.clear;
         super.awakeFromNib();
+        _todoLabel.textColor = UIColor(named: "custom_text_color");
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

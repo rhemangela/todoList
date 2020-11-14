@@ -28,17 +28,11 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.dataSource = self;
         
         tableView.tableFooterView = UIView();
-        self.tableView.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.99, alpha: 1.0);
-        self.view.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 0.99, alpha: 1.0);
-//        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "list_bg04")!);
-//        self.view.contentMode = UIView.ContentMode.scaleAspectFill;
         
         lists = realm.objects(todoList.self); //all todoList instances in Realm
         all_items = realm.objects(Item_.self);// all item instances in Realm
 
         currentListName = defaults.string(forKey: "lastOpenList") ?? "New List";
-        darkMode = defaults.bool(forKey: "darkmode") ;
-        print(darkMode);
         
         if (lists.isEmpty){
             createNewList(name: currentListName)
@@ -68,9 +62,9 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! TodoListTableViewCell;
             cell.delegate = self;
             cell._todoLabel?.text = self.selected_items[indexPath.row].issue;
-            cell._tickBox.image = selected_items[indexPath.row].isDone ? UIImage(named: "selected_gray.png") : UIImage(named: "unselected.png");
+            cell._tickBox.image = selected_items[indexPath.row].isDone ? UIImage(named: "select_on.png") : UIImage(named: "select_off.png");
             cell._heart.image = selected_items[indexPath.row].isImportant ? UIImage(named: "heart-solid.png") : .none;
-            cell._todoLabel.textColor =  selected_items[indexPath.row].isDone ? UIColor(red: 0.672, green: 0.675, blue: 0.706, alpha: 1.0) : UIColor.black;
+            cell._todoLabel.textColor =  selected_items[indexPath.row].isDone ? UIColor(named: "custom_text_gray_color") : UIColor(named: "custom_text_color");
             return cell;
         }
     }
@@ -98,7 +92,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
             catch {print("did select row errer,\(error)")}
-            cell._tickBox.image = selected_items[indexPath.row].isDone ? UIImage(named: "selected_gray.png") : UIImage(named: "unselected.png");
+            cell._tickBox.image = selected_items[indexPath.row].isDone ? UIImage(named: "select_on.png") : UIImage(named: "select_off.png");
             self.tableView.reloadData();
         } else if (indexPath.row == self.selected_items.count){
             let cell = self.tableView.cellForRow(at: indexPath) as! AddNewItemTableViewCell;
@@ -128,7 +122,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
                    
                completion(true)
            }
-           delete.backgroundColor =  UIColor(red: 0.83, green: 0.43, blue: 0.5, alpha: 1.0)
+        delete.backgroundColor =  UIColor(named: "delete_color");
         
         let important = UIContextualAction(style: .normal, title: self.selected_items[indexPath.row].isImportant ? NSLocalizedString("cancelMarker", comment: "") : NSLocalizedString("markAsImportant", comment: "")) { (action, view, completion) in
             
@@ -142,7 +136,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
             
             completion(true)
         }
-        important.backgroundColor =  UIColor(red: 0.98, green: 0.72, blue: 0.42, alpha: 1.0)
+        important.backgroundColor =  UIColor(named: "remark_color")
         
         
         let config = UISwipeActionsConfiguration(actions: [delete, important]);

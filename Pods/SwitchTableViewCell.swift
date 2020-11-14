@@ -12,7 +12,7 @@ class SwitchTableViewCell: UITableViewCell {
 
         if sender.isOn == true {    // 判斷使用者選擇是開還是關
             print("on");
-              }else {
+              } else {
             print("off");
               }
     }
