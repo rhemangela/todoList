@@ -22,7 +22,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settingCell" translatesAutoresizingMaskIntoConstraints="NO" id="Ska-vT-e4A" customClass="SettingTableViewCell" customModule="RemindMe" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settingCell" translatesAutoresizingMaskIntoConstraints="NO" id="Ska-vT-e4A" customClass="SettingTableViewCell" customModule="RemindMe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ska-vT-e4A" id="5Xx-Is-bBj">
@@ -64,6 +64,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ViE-dk-YZR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wq9-KP-yNW" firstAttribute="top" secondItem="ViE-dk-YZR" secondAttribute="top" id="Oz4-LK-hs3"/>
                             <constraint firstItem="wq9-KP-yNW" firstAttribute="leading" secondItem="ViE-dk-YZR" secondAttribute="leading" id="ogK-HZ-gHs"/>
@@ -266,6 +267,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zAe-zx-Fm4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Rsk-sT-ZBn" firstAttribute="leading" secondItem="zAe-zx-Fm4" secondAttribute="leading" id="0s0-rn-3K2"/>
                             <constraint firstItem="Rsk-sT-ZBn" firstAttribute="top" secondItem="NNy-nR-MmY" secondAttribute="top" id="9u8-O3-H8P"/>

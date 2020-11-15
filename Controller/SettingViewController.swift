@@ -48,7 +48,6 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 0:
             performSegue(withIdentifier: "showColorPicker", sender: nil)
         default:
-            
             return;
         }
     }
