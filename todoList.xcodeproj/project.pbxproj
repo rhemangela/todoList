@@ -15,7 +15,11 @@
 		0B57B673255D774C00C0D200 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B57B672255D774C00C0D200 /* SettingTableViewCell.swift */; };
 		0B708E492504FE2600EC0DA0 /* listData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B708E472504FE2600EC0DA0 /* listData.xcdatamodeld */; };
 		0B7ABB91251B626500413652 /* ListPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7ABB90251B626500413652 /* ListPickerView.swift */; };
+		0B897D3A2562C5FB00D5ADAC /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B897D392562C5FB00D5ADAC /* CustomTabBar.swift */; };
+		0B897D3D2562CA2300D5ADAC /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B897D3C2562CA2300D5ADAC /* CustomTabBarController.swift */; };
 		0B962CC62503F698006C4D2F /* TodoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B962CC52503F698006C4D2F /* TodoListTableViewCell.swift */; };
+		0B9F66182565685400EA20D4 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9F66172565685400EA20D4 /* UIViewControllerExt.swift */; };
+		0B9F661C25656CCD00EA20D4 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9F661B25656CCD00EA20D4 /* DBManager.swift */; };
 		0BA9C1422507BF7900020AFE /* todoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA9C1412507BF7900020AFE /* todoList.swift */; };
 		0BBC700B24CDB716004D6157 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC700A24CDB716004D6157 /* AppDelegate.swift */; };
 		0BBC700D24CDB716004D6157 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC700C24CDB716004D6157 /* SceneDelegate.swift */; };
@@ -37,7 +41,11 @@
 		0B57B672255D774C00C0D200 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		0B708E482504FE2600EC0DA0 /* listData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = listData.xcdatamodel; sourceTree = "<group>"; };
 		0B7ABB90251B626500413652 /* ListPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPickerView.swift; sourceTree = "<group>"; };
+		0B897D392562C5FB00D5ADAC /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		0B897D3C2562CA2300D5ADAC /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTabBarController.swift; path = todoList/CustomTabBarController.swift; sourceTree = SOURCE_ROOT; };
 		0B962CC52503F698006C4D2F /* TodoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListTableViewCell.swift; sourceTree = "<group>"; };
+		0B9F66172565685400EA20D4 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIViewControllerExt.swift; path = DataModel/UIViewControllerExt.swift; sourceTree = SOURCE_ROOT; };
+		0B9F661B25656CCD00EA20D4 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		0BA9C1412507BF7900020AFE /* todoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoList.swift; sourceTree = "<group>"; };
 		0BBC700724CDB716004D6157 /* RemindMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemindMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BBC700A24CDB716004D6157 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +86,8 @@
 				0BD0ED142507964300C67CD0 /* Item_.swift */,
 				0BA9C1412507BF7900020AFE /* todoList.swift */,
 				0B708E472504FE2600EC0DA0 /* listData.xcdatamodeld */,
+				0B9F66172565685400EA20D4 /* UIViewControllerExt.swift */,
+				0B9F661B25656CCD00EA20D4 /* DBManager.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -85,6 +95,7 @@
 		0B708E4B2504FFF100EC0DA0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0B897D3C2562CA2300D5ADAC /* CustomTabBarController.swift */,
 				0B46BCC1252C885B00BDA181 /* ColorPickerViewController.swift */,
 				0B57B66E255D611100C0D200 /* SettingViewController.swift */,
 				0BBC700E24CDB716004D6157 /* TodoListViewController.swift */,
@@ -139,6 +150,7 @@
 				0B57B672255D774C00C0D200 /* SettingTableViewCell.swift */,
 				0B3F0870255C34E4006F732C /* SwitchTableViewCell.swift */,
 				0B3F0871255C34E4006F732C /* SwitchTableViewCell.xib */,
+				0B897D392562C5FB00D5ADAC /* CustomTabBar.swift */,
 				0B2891D925090F11004DEF0C /* AddNewItemTableViewCell.swift */,
 				0B962CC52503F698006C4D2F /* TodoListTableViewCell.swift */,
 				0BBC700A24CDB716004D6157 /* AppDelegate.swift */,
@@ -286,12 +298,16 @@
 			files = (
 				0B46BCC2252C885B00BDA181 /* ColorPickerViewController.swift in Sources */,
 				0BD0ED152507964300C67CD0 /* Item_.swift in Sources */,
+				0B897D3D2562CA2300D5ADAC /* CustomTabBarController.swift in Sources */,
+				0B897D3A2562C5FB00D5ADAC /* CustomTabBar.swift in Sources */,
 				0B57B673255D774C00C0D200 /* SettingTableViewCell.swift in Sources */,
 				0B708E492504FE2600EC0DA0 /* listData.xcdatamodeld in Sources */,
 				0B57B66F255D611100C0D200 /* SettingViewController.swift in Sources */,
 				0BBC700F24CDB716004D6157 /* TodoListViewController.swift in Sources */,
 				0B7ABB91251B626500413652 /* ListPickerView.swift in Sources */,
+				0B9F66182565685400EA20D4 /* UIViewControllerExt.swift in Sources */,
 				0B3F0872255C34E4006F732C /* SwitchTableViewCell.swift in Sources */,
+				0B9F661C25656CCD00EA20D4 /* DBManager.swift in Sources */,
 				0BA9C1422507BF7900020AFE /* todoList.swift in Sources */,
 				0BBC700B24CDB716004D6157 /* AppDelegate.swift in Sources */,
 				0BBC700D24CDB716004D6157 /* SceneDelegate.swift in Sources */,
@@ -468,6 +484,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.angelatsehk.remindme;
 				PRODUCT_NAME = RemindMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -490,6 +507,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.angelatsehk.remindme;
 				PRODUCT_NAME = RemindMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
