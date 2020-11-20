@@ -283,11 +283,8 @@
                                 <action selector="deleteFolder:" destination="LpS-Yy-QHC" id="sHr-xQ-CmJ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="S1W-lD-iFb">
+                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="S1W-lD-iFb">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="addNewFolder:" destination="LpS-Yy-QHC" id="2ab-B9-8xg"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>

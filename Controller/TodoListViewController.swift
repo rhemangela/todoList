@@ -10,7 +10,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
     let fullScreenSize = UIScreen.main.bounds.size;
     let listPicker: UIPickerView = UIPickerView();
     let navBarBtn =  UIButton(type: .custom);
-
     let RealmManager = DBManager._realm;
     var selectedListIndex = 0;
     var darkMode = false;
@@ -24,7 +23,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.tableFooterView = UIView();
         
         if (RealmManager.lists.isEmpty){
-            createNewList(name: RealmManager.currentListName)
+            createNewList_(name:RealmManager.currentListName)
         } else {
             self.loadListItems();
         }
@@ -34,6 +33,9 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         //tabbar item name
         self.tableView.reloadData();
         print("folder of Realm,\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))");
+        
+        NotificationCenter.default
+                          .addObserver(self, selector:#selector(createNewList(notification:)), name: NSNotification.Name ("CreateNewList"), object: nil)
         
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -185,36 +187,6 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         selectedListIndex = row;
     }
     
-    // add new folder
-    @IBAction func addNewFolder(_ sender: UIBarButtonItem) {
-    var inputField = UITextField();
-    let alert = UIAlertController(title: NSLocalizedString("addNewFolder", comment: ""), message: "", preferredStyle: UIAlertController.Style.alert);
-    let confirmAction = UIAlertAction(title: NSLocalizedString("confirm", comment: ""), style: UIAlertAction.Style.default) { (UIAlertAction) in
-        if let listName = inputField.text {
-            var isDuplicateName = false;
-            if (!listName.trimmingCharacters(in: .whitespaces).isEmpty){
-                for item in self.RealmManager.lists {
-                    if (item.title == listName){
-                        isDuplicateName = true;
-                    }
-                }
-                if (!isDuplicateName) {
-                    self.createNewList(name: listName)
-                }
-            }
-        }
-    };
-    let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)
-    alert.addAction(confirmAction);
-    alert.addAction(cancelAction);
-    alert.addTextField { (UITextField) in
-            UITextField.placeholder = NSLocalizedString("enterNewListName", comment: "");
-            inputField = UITextField;
-        }
-    present(alert,animated: true, completion: nil);
-      }
-
-    
     @IBAction func deleteFolder(_ sender: Any) {
         let alert = UIAlertController(title: NSLocalizedString("deleteListMsg", comment: ""), message: NSLocalizedString("deleteListMsgDetail", comment: ""), preferredStyle: UIAlertController.Style.alert);
         let confirmAction = UIAlertAction(title: NSLocalizedString("confirm", comment: ""), style: UIAlertAction.Style.default) { (UIAlertAction) in
@@ -235,7 +207,7 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
                     self.RealmManager.realm.deleteAll()
                 }
                 self.RealmManager.currentListName = "New List";
-                self.createNewList(name: "New List")
+                self.createNewList_(name: "New List")
             }
             self.loadListItems();
             self.tableView.reloadData();
@@ -268,7 +240,13 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.reloadData();
     }
     
-    func createNewList(name: String){
+    @objc func createNewList(notification: Notification){
+        // pass this notification to local function
+        guard let name = notification.object as? String else { return };
+        self.createNewList_(name: name);
+    }
+    
+    func createNewList_ (name: String){
         let newList = todoList();
         newList.title = name;
         do { try RealmManager.realm.write{

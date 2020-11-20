@@ -8,13 +8,12 @@ protocol AddNewListDelegate {
 class CustomTabBarController: UITabBarController,  UITabBarControllerDelegate  {
 
     var _delegate: AddNewListDelegate?
-    let realm = try! Realm();
-    var lists: Results<todoList>!;
+    let RealmManager = DBManager._realm;
     
     override func viewDidLoad() {
         super.viewDidLoad();
         self.delegate = self;
-        lists = realm.objects(todoList.self);
+//        lists = realm.objects(todoList.self);
         self.setupMiddleButton();
     }
     
@@ -39,14 +38,14 @@ class CustomTabBarController: UITabBarController,  UITabBarControllerDelegate  {
                 if let listName = inputField.text {
                     var isDuplicateName = false;
                     if (!listName.trimmingCharacters(in: .whitespaces).isEmpty){
-                        for item in self.lists {
+                        for item in self.RealmManager.lists {
                             if (item.title == listName){
                                 isDuplicateName = true;
                             }
                         }
                         if (!isDuplicateName) {
-//                            self.createNewList(name: listName)
-                            print("can create");
+//                         self.createNewList(name: listName)
+                            NotificationCenter.default.post(name:NSNotification.Name("CreateNewList"),object: listName ,userInfo: nil)
                         }
                     }
                 }
@@ -59,7 +58,5 @@ class CustomTabBarController: UITabBarController,  UITabBarControllerDelegate  {
                     inputField = UITextField;
                 }
             present(alert,animated: true, completion: nil);
-            
         }
-
 }
