@@ -285,6 +285,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="organize" id="S1W-lD-iFb">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="clickChooseList:" destination="LpS-Yy-QHC" id="8Mf-Gz-fPK"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>

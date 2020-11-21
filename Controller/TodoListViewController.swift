@@ -171,6 +171,10 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         self.popupListPicker();
     }
     
+    @IBAction func clickChooseList(_ sender: Any) {
+        self.popupListPicker();
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

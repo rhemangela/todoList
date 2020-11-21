@@ -18,7 +18,6 @@
 		0B897D3A2562C5FB00D5ADAC /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B897D392562C5FB00D5ADAC /* CustomTabBar.swift */; };
 		0B897D3D2562CA2300D5ADAC /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B897D3C2562CA2300D5ADAC /* CustomTabBarController.swift */; };
 		0B962CC62503F698006C4D2F /* TodoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B962CC52503F698006C4D2F /* TodoListTableViewCell.swift */; };
-		0B9F66182565685400EA20D4 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9F66172565685400EA20D4 /* UIViewControllerExt.swift */; };
 		0B9F661C25656CCD00EA20D4 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9F661B25656CCD00EA20D4 /* DBManager.swift */; };
 		0BA9C1422507BF7900020AFE /* todoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA9C1412507BF7900020AFE /* todoList.swift */; };
 		0BBC700B24CDB716004D6157 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC700A24CDB716004D6157 /* AppDelegate.swift */; };
@@ -27,6 +26,7 @@
 		0BBC701224CDB716004D6157 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC701024CDB716004D6157 /* Main.storyboard */; };
 		0BBC701424CDB719004D6157 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC701324CDB719004D6157 /* Assets.xcassets */; };
 		0BBC701724CDB719004D6157 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC701524CDB719004D6157 /* LaunchScreen.storyboard */; };
+		0BBF42D72569643E004F5B67 /* UserDefaultExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF42D62569643E004F5B67 /* UserDefaultExt.swift */; };
 		0BD0ED152507964300C67CD0 /* Item_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD0ED142507964300C67CD0 /* Item_.swift */; };
 		0BF8061B252452F900B51739 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BF8061D252452F900B51739 /* Localizable.strings */; };
 		1E6CC9DBD6EAC7EA7A96C182 /* Pods_todoList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E068061117AFCC10BAB157 /* Pods_todoList.framework */; };
@@ -44,7 +44,6 @@
 		0B897D392562C5FB00D5ADAC /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		0B897D3C2562CA2300D5ADAC /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTabBarController.swift; path = todoList/CustomTabBarController.swift; sourceTree = SOURCE_ROOT; };
 		0B962CC52503F698006C4D2F /* TodoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListTableViewCell.swift; sourceTree = "<group>"; };
-		0B9F66172565685400EA20D4 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIViewControllerExt.swift; path = DataModel/UIViewControllerExt.swift; sourceTree = SOURCE_ROOT; };
 		0B9F661B25656CCD00EA20D4 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		0BA9C1412507BF7900020AFE /* todoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todoList.swift; sourceTree = "<group>"; };
 		0BBC700724CDB716004D6157 /* RemindMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemindMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +54,7 @@
 		0BBC701324CDB719004D6157 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BBC701624CDB719004D6157 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0BBC701824CDB719004D6157 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0BBF42D62569643E004F5B67 /* UserDefaultExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultExt.swift; sourceTree = "<group>"; };
 		0BD0ED142507964300C67CD0 /* Item_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Item_.swift; path = Controller/Item_.swift; sourceTree = SOURCE_ROOT; };
 		0BF806152524526D00B51739 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		0BF806162524526D00B51739 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -86,8 +86,8 @@
 				0BD0ED142507964300C67CD0 /* Item_.swift */,
 				0BA9C1412507BF7900020AFE /* todoList.swift */,
 				0B708E472504FE2600EC0DA0 /* listData.xcdatamodeld */,
-				0B9F66172565685400EA20D4 /* UIViewControllerExt.swift */,
 				0B9F661B25656CCD00EA20D4 /* DBManager.swift */,
+				0BBF42D62569643E004F5B67 /* UserDefaultExt.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -305,7 +305,7 @@
 				0B57B66F255D611100C0D200 /* SettingViewController.swift in Sources */,
 				0BBC700F24CDB716004D6157 /* TodoListViewController.swift in Sources */,
 				0B7ABB91251B626500413652 /* ListPickerView.swift in Sources */,
-				0B9F66182565685400EA20D4 /* UIViewControllerExt.swift in Sources */,
+				0BBF42D72569643E004F5B67 /* UserDefaultExt.swift in Sources */,
 				0B3F0872255C34E4006F732C /* SwitchTableViewCell.swift in Sources */,
 				0B9F661C25656CCD00EA20D4 /* DBManager.swift in Sources */,
 				0BA9C1422507BF7900020AFE /* todoList.swift in Sources */,

@@ -6,6 +6,8 @@ class ColorPickerViewController: UIViewController, ColorPickerViewDelegateFlowLa
     @IBOutlet weak var colorPickerView: ColorPickerView!
     @IBOutlet weak var selectColorLabel: UILabel!
     
+    let RealmManager = DBManager._realm;
+    
       override func viewDidLoad() {
         super.viewDidLoad();
         
@@ -40,6 +42,7 @@ class ColorPickerViewController: UIViewController, ColorPickerViewDelegateFlowLa
         UINavigationBar.appearance().barTintColor = colorPickerView.colors[indexPath.row];
         UITabBar.appearance().tintColor = colorPickerView.colors[indexPath.row];
         self.navigationController?.navigationBar.barTintColor = colorPickerView.colors[indexPath.row];
+        self.RealmManager.defaults.setColor(color: colorPickerView.colors[indexPath.row], forKey: "colorTheme")
     }
 }
 

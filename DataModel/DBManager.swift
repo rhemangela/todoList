@@ -10,6 +10,7 @@ class DBManager {
     var selected_items : Results<Item_>!;
     var lists: Results<todoList>!;
     var currentListName = "";
+    var colorTheme = UIColor();
     
     static let _realm = DBManager();
     
@@ -17,7 +18,6 @@ class DBManager {
         lists = realm.objects(todoList.self); //all todoList instances in Realm
         all_items = realm.objects(Item_.self);// all item instances in Realm
         currentListName = defaults.string(forKey: "lastOpenList") ?? "New List";
-        
     }
 
 }
